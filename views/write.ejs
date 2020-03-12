@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>RAYBARO</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+
+<form method="post" action="/board/write" onsubmit="onWriteSubmit()">
+    <table border="2">
+<!--        <caption align="right">Raybaro Repair List</caption>-->
+        <thead>
+        <tr>
+            <td colspan="5" id="main">Repair List</td>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr>
+            <th>제품명</th>
+            <td><input type="text" size=30 name="title" id="title" style="width:50%;height:100%;font-size:15px;" required /></td>
+            <th>관리요원 성명</th>
+            <td><input type="text" size=30 name="writer" id="writer" style="width:50%;height:100%;font-size:15px;" required/></td>
+        </tr>
+        <tr>
+            <th>관리국</th>
+            <td><select id="administer" name="administer" style="width:50%;height:100%;">
+                    <option value="1">1번째사항</option>
+                    <option value="2">2번째사항</option>
+                    <option value="3">3번째사항</option>
+                </select>
+            </td>
+            <th>의뢰회사</th>
+            <td><select id="adcompany1" name="adcompany1" >
+                    <option value="1">1번째사항</option>
+                    <option value="2">2번째사항</option>
+                    <option value="3">3번째사항</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>제조사S/N</th>
+            <td><input type="text" name="sn1" id="sn1" style="width:50%;height:50%;font-size:15px;" required/></td>
+
+            <th>삼성S/N</th>
+            <td><input type="text" name="sn2" id="sn2"style="width:50%;height:50%;font-size:15px;" required/></td>
+        </tr>
+        <tr>
+            <th>KTF,SKT S/N</th>
+            <td><input type="text" name="sn3" id="sn3"style="width:50%;height:100%;font-size:15px;" required/></td>
+            <th>고객 접수 증상</th>
+            <td><select id="customer" name="customer" style="width:50%;height:100%;">
+                    <option value="1">1번째사항</option>
+                    <option value="2">2번째사항</option>
+                    <option value="3">3번째사항</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>고객 TAG에 기입된 내용</th>
+            <td colspan="4"><input type="text" style="width: 99%;" name="tag" id="tag" required/></td>
+        </tr>
+        <tr>
+            <td colspan="5"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
+        </tr>
+        </tbody>
+
+    </table>
+</form>
+
+<form action="/upload/write" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td><input type="file" name="photo" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="파일 업로드">
+</form>
+
+<!--<script>-->
+<!--    function onWriteSubmit()-->
+<!--    {-->
+<!--        if ( $("#writer").val().trim() == "" )-->
+<!--        {-->
+<!--            var message = "아이디를 입력해 주세요";-->
+<!--            $("#writer").val("");-->
+<!--            $("#writer").focus();-->
+<!--            alert(message);-->
+<!--            return false;-->
+<!--        }-->
+
+<!--        if ( $("#title").val().trim() == "" )-->
+<!--        {-->
+<!--            var message = "제목을 입력해 주세요";-->
+<!--            $("#title").val("");-->
+<!--            $("#title").focus();-->
+<!--            alert(message);-->
+<!--            return false;-->
+<!--        }-->
+
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

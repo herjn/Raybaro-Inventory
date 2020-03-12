@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>RAYBARO</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+<%var read = rows[0]; %>
+<body>
+
+<form method="post" action="/board/update/<%= read.idx %>" onsubmit="onWriteSubmit()">
+    <table border="2">
+        <thead>
+        <tr>
+            <td colspan="5" id="main">Repair List</td>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr>
+            <th>제품명</th>
+            <td><input type="text" size=30 name="title" placeholder="<%=read.title%>" id="title" style="width:50%;height:100%;font-size:15px;" required /></td>
+            <th>관리요원 성명</th>
+            <td><input type="text" size=30 name="writer" placeholder="<%=read.writer%>"id="writer" style="width:50%;height:100%;font-size:15px;" required/></td>
+        </tr>
+        <tr>
+            <th>관리국</th>
+            <td><select id="administer" name="administer" style="width:50%;height:100%;">
+                    <option value="1" <%= read.administer == '1' ? 'selected' : ''%> >1번째사항</option>
+                    <option value="2" <%= read.administer == '2' ? 'selected' : ''%> >2번째사항</option>
+                    <option value="3" <%= read.administer == '3' ? 'selected' : ''%> >3번째사항</option>
+                </select>
+            </td>
+            <th>의뢰회사</th>
+            <td><select id="adcompany1" placeholder="<%=read.adcompany1%>"name="adcompany1" >
+                    <option value="1" <%= read.adcompany1 == '1' ? 'selected' : ''%> >1번째사항</option>
+                    <option value="2"<%= read.adcompany1 == '2' ? 'selected' : ''%> >2번째사항</option>
+                    <option value="3" <%= read.adcompany1 == '3' ? 'selected' : ''%> >3번째사항</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>제조사S/N</th>
+            <td><input type="text" name="sn1" placeholder="<%=read.sn1%>" id="sn1" style="width:50%;height:50%;font-size:15px;" required/></td>
+
+            <th>삼성S/N</th>
+            <td><input type="text" name="sn2" placeholder="<%=read.sn2%>" id="sn2" style="width:50%;height:50%;font-size:15px;" required/></td>
+        </tr>
+        <tr>
+            <th>KTF,SKT S/N</th>
+            <td><input type="text" placeholder="<%=read.sn3%>" name="sn3" id="sn3"style="width:50%;height:100%;font-size:15px;" required/></td>
+            <th>고객 접수 증상</th>
+            <td><select id="customer"  name="customer" style="width:50%;height:100%;">
+                    <option value="1" <%= read.customer == '1' ? 'selected' : ''%> >1번째사항</option>
+                    <option value="2"<%= read.customer == '2' ? 'selected' : ''%> >2번째사항</option>
+                    <option value="3" <%= read.customer == '3' ? 'selected' : ''%> >3번째사항</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>고객 TAG에 기입된 내용</th>
+            <td colspan="4"><input type="text" style="width: 99%;" placeholder="<%=read.tag%>" name="tag" id="tag" required/></td>
+        </tr>
+        <tr>
+            <td colspan="5"><input type="submit" id="submit" value="수정하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
+        </tr>
+        </tbody>
+
+    </table>
+</form>
+<!--<script>-->
+<!--    function onWriteSubmit()-->
+<!--    {-->
+<!--        if ( $("#writer").val().trim() == "" )-->
+<!--        {-->
+<!--            var message = "아이디를 입력해 주세요";-->
+<!--            $("#writer").val("");-->
+<!--            $("#writer").focus();-->
+<!--            alert(message);-->
+<!--            return false;-->
+<!--        }-->
+
+<!--        if ( $("#title").val().trim() == "" )-->
+<!--        {-->
+<!--            var message = "제목을 입력해 주세요";-->
+<!--            $("#title").val("");-->
+<!--            $("#title").focus();-->
+<!--            alert(message);-->
+<!--            return false;-->
+<!--        }-->
+
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

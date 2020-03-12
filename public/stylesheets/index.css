@@ -1,0 +1,29 @@
+a:link { text-decoration: none;}
+a:visited { color: white; text-decoration: none;}
+a:hover { color: white; text-decoration: none;}
+
+p{
+    position:absolute;
+    top:55%;
+    left:50%;
+    width:100px;
+    height:100px;
+    margin:-50px 0 0 -50px;
+    font-size:30px;
+    color:white;
+}
+
+*{
+    background-color:lightsteelblue;
+}
+h1{
+    position:absolute;
+    top:40%;
+    left:44%;
+    width:100px;
+    height:100px;
+    margin:-30px 0 0 -30px;
+    font-size:50px;
+    color:white;
+    text-align:center;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/stylesheets/list.css" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+<header><h1> <span>Raybaro</span> Database System </h1></header>
+
+<nav class=""sticky_nav>
+    <ul class="nav-container">
+        <li class="nav-item"><a href="">메뉴1</a></li>
+        <li class="nav-item"><a href="">메뉴2</a></li>
+        <li class="nav-item"><a href="">메뉴3</a></li>
+        <li class="nav-item"><a href="">메뉴4</a></li>
+    </ul>
+</nav>
+
+<p>
+    <a href="/board/write" id="enter"> 자료 입력 </a>
+
+</p>
+
+<table border="1">
+    <tr>
+        <th>번호</th>
+        <th>관리 요원</th>
+        <th>제품명</th>
+        <th>의뢰회사</th>
+        <th>삼성 S/N</th>
+        <th>제조사 S/N</th>
+        <th>KTF,SKT S/N</th>
+        <th>고객 접수 증상</th>
+<!--        <th>재의뢰</th>-->
+    </tr>
+    <%
+    for(var i = 0; i<rows.length; i++){
+        var data=rows[i];
+    %>
+    <tr>
+        <td id="number"><%=i+1%></td>
+        <td><a href="/board/read/<%=data.idx%>"><%=data.writer%></a></td>
+        <td><%=data.title%></td>
+        <td><%=data.adcompany1%></td>
+        <td><%=data.sn1%></td>
+        <td><%=data.sn2%></td>
+        <td><%=data.sn3%></td>
+        <td><%=data.customer%></td>
+    </tr>
+    <%
+    }
+    %>
+
+</table>
+
+
+</body>
+</html>
