@@ -8,7 +8,7 @@
 <%var read = rows[0]; %>
 <body>
 
-<form method="post" action="/board/update/<%= read.idx %>" onsubmit="onWriteSubmit()">
+<form method="post" action="/board/update/<%= read.idx %>" onsubmit="onWriteSubmit()" enctype="multipart/form-data">
     <table border="2">
         <thead>
         <tr>
@@ -19,9 +19,9 @@
         <tbody>
         <tr>
             <th>제품명</th>
-            <td><input type="text" size=30 name="title" placeholder="<%=read.title%>" id="title" style="width:50%;height:100%;font-size:15px;" required /></td>
+            <td><input type="text" size=30 name="title" value="<%=read.title%>" id="title" style="width:50%;height:100%;font-size:15px;" required /></td>
             <th>관리요원 성명</th>
-            <td><input type="text" size=30 name="writer" placeholder="<%=read.writer%>"id="writer" style="width:50%;height:100%;font-size:15px;" required/></td>
+            <td><input type="text" size=30 name="writer" value="<%=read.writer%>"id="writer" style="width:50%;height:100%;font-size:15px;" required/></td>
         </tr>
         <tr>
             <th>관리국</th>
@@ -32,7 +32,7 @@
                 </select>
             </td>
             <th>의뢰회사</th>
-            <td><select id="adcompany1" placeholder="<%=read.adcompany1%>"name="adcompany1" >
+            <td><select id="adcompany1" value="<%=read.adcompany1%>"name="adcompany1" >
                     <option value="1" <%= read.adcompany1 == '1' ? 'selected' : ''%> >1번째사항</option>
                     <option value="2"<%= read.adcompany1 == '2' ? 'selected' : ''%> >2번째사항</option>
                     <option value="3" <%= read.adcompany1 == '3' ? 'selected' : ''%> >3번째사항</option>
@@ -41,14 +41,14 @@
         </tr>
         <tr>
             <th>제조사S/N</th>
-            <td><input type="text" name="sn1" placeholder="<%=read.sn1%>" id="sn1" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <td><input type="text" name="sn1" value="<%=read.sn1%>" id="sn1" style="width:50%;height:50%;font-size:15px;" required/></td>
 
             <th>삼성S/N</th>
-            <td><input type="text" name="sn2" placeholder="<%=read.sn2%>" id="sn2" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <td><input type="text" name="sn2" value="<%=read.sn2%>" id="sn2" style="width:50%;height:50%;font-size:15px;" required/></td>
         </tr>
         <tr>
             <th>KTF,SKT S/N</th>
-            <td><input type="text" placeholder="<%=read.sn3%>" name="sn3" id="sn3"style="width:50%;height:100%;font-size:15px;" required/></td>
+            <td><input type="text" value="<%=read.sn3%>" name="sn3" id="sn3"style="width:50%;height:100%;font-size:15px;" required/></td>
             <th>고객 접수 증상</th>
             <td><select id="customer"  name="customer" style="width:50%;height:100%;">
                     <option value="1" <%= read.customer == '1' ? 'selected' : ''%> >1번째사항</option>
@@ -59,10 +59,14 @@
         </tr>
         <tr>
             <th>고객 TAG에 기입된 내용</th>
-            <td colspan="4"><input type="text" style="width: 99%;" placeholder="<%=read.tag%>" name="tag" id="tag" required/></td>
+            <td colspan="4"><input type="text" style="width: 99%;" value="<%=read.tag%>" name="tag" id="tag" required/></td>
         </tr>
         <tr>
-            <td colspan="5"><input type="submit" id="submit" value="수정하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
+            <th>이미지 등록</th>
+            <td colspan="5"><input type="file" name="photo" /></td>
+        </tr>
+        <tr>
+            <td colspan="6"><input type="submit" id="submit" value="수정하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>
         </tbody>
 

@@ -8,7 +8,7 @@
 
 <body>
 
-<form method="post" action="/board/write" onsubmit="onWriteSubmit()">
+<form method="post" action="/board/write" onsubmit="onWriteSubmit()" enctype="multipart/form-data">
     <table border="2">
 <!--        <caption align="right">Raybaro Repair List</caption>-->
         <thead>
@@ -63,21 +63,23 @@
             <td colspan="4"><input type="text" style="width: 99%;" name="tag" id="tag" required/></td>
         </tr>
         <tr>
-            <td colspan="5"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
+            <th>이미지 등록</th>
+            <td colspan="5"><input type="file" name="photo" /></td>
+        </tr>
+        <tr>
+            <td colspan="6"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>
         </tbody>
 
     </table>
 </form>
 
-<form action="/upload/write" method="post" enctype="multipart/form-data">
-    <table>
-        <tr>
-            <td><input type="file" name="photo" /></td>
-        </tr>
-    </table>
-    <input type="submit" value="파일 업로드">
-</form>
+<!--<form action="/upload/write" method="post" enctype="multipart/form-data">-->
+<!--    <table>-->
+
+<!--    </table>-->
+<!--    <input type="submit" value="파일 업로드">-->
+<!--</form>-->
 
 <!--<script>-->
 <!--    function onWriteSubmit()-->

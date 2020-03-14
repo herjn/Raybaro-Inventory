@@ -18,6 +18,9 @@
     </ul>
 </nav>
 
+<h1> <%= search_query %>  <%= search %>  검색결과 </h1>
+
+<a href="/board/page/1"> 메인으로 </a>
 <p>
     <a href="/board/write" id="enter"> 자료 입력 </a>
 </p>
@@ -67,24 +70,17 @@
     </tr>
 </table>
 <p>
-    <form method="post" action="/board/search">
-        <select id="search_query" name="search_query">
-            <option value="1">제품명</option>
-            <option value="2">관리 요원</option>
-            <option value="3">날짜(미구현)</option>
-        </select>
-        <input type="text" name="search" id="search" required/>
-        <input type="submit" id="submit" value="검색">
-    </form>
+<form method="post" action="/board/search">
+    <select id="search_query" name="search_query">
+        <option value="1">제품명</option>
+        <option value="2">관리 요원</option>
+        <option value="3">날짜(미구현)</option>
+    </select>
+    <input type="text" name="search" id="search" required/>
+    <input type="submit" id="submit" value="검색">
+</form>
 
 </p>
-
-<p>
-    <form method="post" action="/board/download">
-        <input type="submit" id="submit" value="엑셀 다운로드">
-    </form>
-</p>
-
 </body>
 </html>
 

@@ -13,3 +13,6 @@ CREATE TABLE `report` (
   `moddate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idx`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE report ADD COLUMN image varchar(45);
