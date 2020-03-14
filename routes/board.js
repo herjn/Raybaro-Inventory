@@ -20,7 +20,7 @@ router.get('/list',function (req,res,next){
 
 router.get('/list/:page',function(req, res, next) {
     var page = req.params.page;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report',function(err,rows){
+    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(repairdate,"%Y년%m월%d일") as repairdate,DATE_FORMAT(requestdate,"%Y년%m월%d일")as requestdate from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         // console.log(ffff);
@@ -33,7 +33,7 @@ router.get('/read/:idx',function (req,res,next) {
     * url에서 gbidx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*/
     var idx = req.params.idx;
     console.log("idx : "+idx);
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate, image from report where idx=?',[idx],function(err,rows){
+    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate,image from report where idx=?',[idx],function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
      // 이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
         console.log('rows :' +  rows);
@@ -58,7 +58,7 @@ router.get('/read/:idx',function (req,res,next) {
 router.get('/page/:page',function(req,res,next)
 {
     var page = req.params.page;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report',function(err,rows){
+    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         // console.log(ffff);
@@ -107,6 +107,8 @@ router.post('/write', upload.single("photo"), function(req, res) {
     var tag = req.body.tag;
     var adcompany1 = req.body.adcompany1;
     var customer = req.body.customer;
+    var requestdate=req.body.requestdate;
+    var repairdate=req.body.repairdate;
 
     var file = req.file;
     var imagepath;
@@ -114,8 +116,8 @@ router.post('/write', upload.single("photo"), function(req, res) {
     else imagepath = file.path
     connection.beginTransaction(function(err) {
         if(err) console.log(err);
-        connection.query('insert into report(title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,image) values(?,?,?,?,?,?,?,?,?,?)'
-            ,[title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,imagepath]
+        connection.query('insert into report(title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate,image) values(?,?,?,?,?,?,?,?,?,?,?,?)'
+            ,[title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate,imagepath]
             ,function (err) {
                 if(err) {
                     /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
@@ -148,7 +150,7 @@ router.post('/write', upload.single("photo"), function(req, res) {
 
 router.get('/update/:idx',function(req,res,next) {
     var idx = req.params.idx;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report where idx=? ',[idx] ,function(err,rows){
+    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where idx=? ',[idx] ,function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         // console.log(ffff);
@@ -169,6 +171,8 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var tag = req.body.tag;
     var adcompany1 = req.body.adcompany1;
     var customer = req.body.customer;
+    var requestdate=req.body.requestdate;
+    var repairdate=req.body.repairdate;
 
     var file = req.file;
 
@@ -179,7 +183,7 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     console.log(imagepath)
 
     console.log(administer,sn1,sn2,sn3,tag,adcompany1,customer);
-    var query = connection.query('update report set title=?,writer=?,administer=?,sn1=?,sn2=?,sn3=?,tag=?,adcompany1=?,customer=?,image=? where idx=?', [title,writer,administer,sn1,sn2,sn3,tag,adcompany1,customer,imagepath,idx], function (err, rows) {
+    var query = connection.query('update report set title=?,writer=?,administer=?,sn1=?,sn2=?,sn3=?,tag=?,adcompany1=?,customer=?,image=?,requestdate=?,repairdate=? where idx=?', [title,writer,administer,sn1,sn2,sn3,tag,adcompany1,customer,imagepath,requestdate,repairdate,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 });
@@ -209,7 +213,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
     var page = req.params.page;
     console.log(search);
     if(search_query == 1){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report where title=?', [search], function(err,rows){
+        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where title=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             console.log('rows :' +  rows);
             // console.log(ffff);
@@ -218,7 +222,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
         });
     }
     if(search_query == 2){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report where writer=?', [search], function(err,rows){
+        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where writer=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             console.log('rows :' +  rows);
             // console.log(ffff);
@@ -228,7 +232,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
     }
     if(search_query == 3){
         // 구현하시오~~~~~~~~~~~~~~~~~~~~~~
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as regdate,DATE_FORMAT(NOW(),"%Y년%m월%d일 %H시%i분%s초") as moddate from report where writer=?', [search], function(err,rows){
+        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where writer=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             console.log('rows :' +  rows);
             // console.log(ffff);
