@@ -20,7 +20,7 @@ router.get('/list',function (req,res,next){
 
 router.get('/list/:page',function(req, res, next) {
     var page = req.params.page;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(repairdate,"%Y년%m월%d일") as repairdate,DATE_FORMAT(requestdate,"%Y년%m월%d일")as requestdate from report',function(err,rows){
+    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         // console.log(ffff);
@@ -222,21 +222,21 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
         });
     }
     if(search_query == 2){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where writer=?', [search], function(err,rows){
+        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where requestdate=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             console.log('rows :' +  rows);
             // console.log(ffff);
-            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"관리 요원"});
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"수리날짜"});
             console.log(rows.length-1);
         });
     }
     if(search_query == 3){
         // 구현하시오~~~~~~~~~~~~~~~~~~~~~~
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where writer=?', [search], function(err,rows){
+        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report where repairdate=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             console.log('rows :' +  rows);
             // console.log(ffff);
-            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"날짜(미구현)"});
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"의뢰날짜"});
             console.log(rows.length-1);
         });
     }

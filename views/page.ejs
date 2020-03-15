@@ -32,8 +32,8 @@
         <th>제조사 S/N</th>
         <th>KTF,SKT S/N</th>
         <th>고객 접수 증상</th>
-        <th>수리날짜</th>
         <th>의뢰날짜</th>
+        <th>수리날짜</th>
         <!--        <th>재의뢰</th>-->
     </tr>
     <%
@@ -52,8 +52,8 @@
         <td><%=data.sn2%></td>
         <td><%=data.sn3%></td>
         <td><%=data.customer%></td>
-        <td><%=data.repairdate%></td>
         <td><%=data.requestdate%></td>
+        <td><%=data.repairdate%></td>
     </tr>
     <% }
     }
@@ -74,8 +74,8 @@
     <form method="post" action="/board/search">
         <select id="search_query" name="search_query">
             <option value="1">제품명</option>
-            <option value="2">관리 요원</option>
-            <option value="3">날짜(미구현)</option>
+            <option value="2">수리날짜</option>
+            <option value="3">의뢰날짜</option>
         </select>
         <input type="text" name="search" id="search" required/>
         <input type="submit" id="submit" value="검색">
