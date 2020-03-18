@@ -16,3 +16,5 @@ CREATE TABLE `report` (
 
 
 ALTER TABLE report ADD COLUMN image varchar(45);
+ALTER TABLE report ADD COLUMN requestdate date DEFAULT NULL;
+ALTER TABLE report ADD COLUMN repairdate date DEFAULT NULL;

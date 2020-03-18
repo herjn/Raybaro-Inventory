@@ -59,7 +59,7 @@
     }
     %>
     <tr>
-        <td colspan="8">
+        <td colspan="10">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>
@@ -75,13 +75,28 @@
         <select id="search_query" name="search_query">
             <option value="1">제품명</option>
             <option value="2">수리날짜</option>
-            <option value="3">의뢰날짜</option>
         </select>
         <input type="text" name="search" id="search" required/>
         <input type="submit" id="submit" value="검색">
     </form>
 
 </p>
+
+<p>
+<form method="post" action="/board/date_search">
+    <select id="date_search_query" name="date_search_query">
+        <option value="1">의뢰날짜</option>
+        <option value="2">수리날짜</option>
+    </select>
+    <input type="date" id="startdate" name="startdate" required>
+    ~
+    <td><input type="date" id="enddate" name="enddate" required>
+    <input type="submit" id="submit" value="검색">
+</form>
+
+</p>
+
+
 
 <p>
     <form method="post" action="/board/download">

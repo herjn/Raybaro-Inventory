@@ -35,8 +35,8 @@
         <th>제조사 S/N</th>
         <th>KTF,SKT S/N</th>
         <th>고객 접수 증상</th>
-        <th>수리날짜</th>
         <th>의뢰날짜</th>
+        <th>수리날짜</th>
         <!--        <th>재의뢰</th>-->
     </tr>
     <%
@@ -55,14 +55,14 @@
         <td><%=data.sn2%></td>
         <td><%=data.sn3%></td>
         <td><%=data.customer%></td>
-        <td><%=data.repairdate%></td>
         <td><%=data.requestdate%></td>
+        <td><%=data.repairdate%></td>
     </tr>
     <% }
     }
     %>
     <tr>
-        <td colspan="8">
+        <td colspan="10">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>
@@ -74,19 +74,32 @@
     </tr>
 </table>
 <p>
-
 <form method="post" action="/board/search">
     <select id="search_query" name="search_query">
         <option value="1">제품명</option>
-        <option value="2">의뢰날짜</option>
-        <option value="3">수리날짜</option>
-
+        <option value="2">수리날짜</option>
     </select>
     <input type="text" name="search" id="search" required/>
     <input type="submit" id="submit" value="검색">
 </form>
 
 </p>
+
+<p>
+<form method="post" action="/board/date_search">
+    <select id="date_search_query" name="date_search_query">
+        <option value="1">의뢰날짜</option>
+        <option value="2">수리날짜</option>
+    </select>
+    <input type="date" id="startdate" name="startdate" required>
+    ~
+    <td><input type="date" id="enddate" name="enddate" required>
+        <input type="submit" id="submit" value="검색">
+</form>
+
+</p>
+
+
 </body>
 </html>
 
