@@ -18,56 +18,95 @@
         </thead>
         <tbody>
         <tr>
-            <th>제품명</th>
-            <td><input type="text" size=30 name="title" value="<%=read.title%>" id="title" style="width:50%;height:100%;font-size:15px;" required /></td>
-            <th>관리요원 성명</th>
-            <td><input type="text" size=30 name="writer" value="<%=read.writer%>"id="writer" style="width:50%;height:100%;font-size:15px;" required/></td>
-        </tr>
-        <tr>
-            <th>관리국</th>
-            <td><select id="administer" name="administer" style="width:50%;height:100%;">
-                    <option value="1" <%= read.administer == '1' ? 'selected' : ''%> >1번째사항</option>
-                    <option value="2" <%= read.administer == '2' ? 'selected' : ''%> >2번째사항</option>
-                    <option value="3" <%= read.administer == '3' ? 'selected' : ''%> >3번째사항</option>
+            <th>수리 분류</th>
+            <td><select id="sort" name="sort" style="width:50%;height:100%;">
+                    <option value="1" <%= read.sort == '1' ? 'selected' : ''%> >통신계측기수리</option>
+                    <option value="2" <%= read.sort == '2' ? 'selected' : ''%> >기지국장비수리</option>
+                    <option value="3" <%= read.sort == '3' ? 'selected' : ''%> >전자저울수리</option>
                 </select>
             </td>
-            <th>의뢰회사</th>
-            <td><select id="adcompany1" value="<%=read.adcompany1%>"name="adcompany1" >
-                    <option value="1" <%= read.adcompany1 == '1' ? 'selected' : ''%> >1번째사항</option>
-                    <option value="2"<%= read.adcompany1 == '2' ? 'selected' : ''%> >2번째사항</option>
-                    <option value="3" <%= read.adcompany1 == '3' ? 'selected' : ''%> >3번째사항</option>
+            <th>수리 요청 회사</th>
+            <td><select id="recompany" name="recompany" style="width:50%;height:100%">
+                    <option value="1"<%= read.recompany == '1' ? 'selected' : ''%> >누비콤</option>
+                    <option value="2"><%= read.recompany == '2' ? 'selected' : ''%> >키사이트테크놀로지</option>
+                    <option value="3"><%= read.recompany == '3' ? 'selected' : ''%> >삼성전자</option>
+                    <option value="4"><%= read.recompany == '4' ? 'selected' : ''%> >삼성SDS</option>
+                    <option value="5"><%= read.recompany == '5' ? 'selected' : ''%> >온세미세미컨덕터</option>
+                    <option value="6"><%= read.recompany == '6' ? 'selected' : ''%> >큐웨이</option>
+                    <option value="7"><%= read.recompany == '7' ? 'selected' : ''%> >엘지전자</option>
+                    <option value="8"><%= read.recompany == '8' ? 'selected' : ''%> >파워넷</option>
+                    <option value="9"><%= read.recompany == '9' ? 'selected' : ''%> >아이텍전자</option>
+                    <option value="10"><%= read.recompany == '10' ? 'selected' : ''%> >트림블</option>
+                    <option value="11"><%= read.recompany == '11' ? 'selected' : ''%> >히로세코리아</option>
+                    <option value="12"><%= read.recompany == '12' ? 'selected' : ''%> >울쏘하이텍</option>
+                    <option value="13"><%= read.recompany == '13' ? 'selected' : ''%> >아비코전자</option>
+                    <option value="14"><%= read.recompany == '14' ? 'selected' : ''%> >비스타콤</option>
+                    <option value="15"><%= read.recompany == '15' ? 'selected' : ''%> >고려대학교</option>
+                    <option value="16"><%= read.recompany == '16' ? 'selected' : ''%> >국민대학교</option>
+                    <option value="17"><%= read.recompany == '17' ? 'selected' : ''%> >대전테크노파크</option>
+                    <option value="18"><%= read.recompany == '18' ? 'selected' : ''%> >히다찌엘지</option>
+                    <option value="19"><%= read.recompany == '19' ? 'selected' : ''%> >평일</option>
+                    <option value="20"><%= read.recompany == '20' ? 'selected' : ''%> >맥스텍</option>
+                    <option value="21"><%= read.recompany == '21' ? 'selected' : ''%> >카이네트웍스</option>
+                    <option value="22"><%= read.recompany == '22' ? 'selected' : ''%> >파워넷</option>
+                    <option value="23"><%= read.recompany == '23' ? 'selected' : ''%> >성호전자</option>
                 </select>
             </td>
         </tr>
-        <tr>
-            <th>제조사S/N</th>
-            <td><input type="text" name="sn1" value="<%=read.sn1%>" id="sn1" style="width:50%;height:50%;font-size:15px;" required/></td>
 
-            <th>삼성S/N</th>
-            <td><input type="text" name="sn2" value="<%=read.sn2%>" id="sn2" style="width:50%;height:50%;font-size:15px;" required/></td>
-        </tr>
         <tr>
-            <th>KTF,SKT S/N</th>
-            <td><input type="text" value="<%=read.sn3%>" name="sn3" id="sn3"style="width:50%;height:100%;font-size:15px;" required/></td>
+            <th>최초 고객사 및 담당자</th>
+            <td><input type="text" name="writer" value="<%=read.writer%>" style="width:50%;height:50%;" required/></td>
+
+            <th>모델명</th>
+            <td><select id="title" name="title" >
+                    <option value="1"><%= read.title == '1' ? 'selected' : ''%> >통신계측기</option>
+                    <option value="2"><%= read.title == '2' ? 'selected' : ''%> >기지국장비</option>
+                    <option value="3"><%= read.title == '3' ? 'selected' : ''%> >전자저울</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th>장비 제조사명</th>
+            <td><input type="text" name="gearcompany" value="<%=read.gearcompany%>"style="width:50%;height:50%;font-size:15px;" required/></td>
+            <th>제품 코드 번호</th>
+            <td><input type="text" name="codenum" value="<%=read.codenum%>" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <th>제품 시리얼 번호/th>
+            <td><input type="text" name="codeserial" value="<%=read.codeserial%>" style="width:50%;height:100%;font-size:15px;" required/></td>
+        </tr>
+
+        <tr>
+            <th>입고날짜</th>
+            <td><input type="date" id="startday" name="startday" value="<%=read.startday%>"/></td>
+            <th>출고날짜</th>
+            <td><input type="date" id="endday" name="endday" value="<%=read.endday%>"/></td>
+        </tr>
+
+        <tr>
             <th>고객 접수 증상</th>
-            <td><select id="customer"  name="customer" style="width:50%;height:100%;">
-                    <option value="1" <%= read.customer == '1' ? 'selected' : ''%> >1번째사항</option>
-                    <option value="2"<%= read.customer == '2' ? 'selected' : ''%> >2번째사항</option>
-                    <option value="3" <%= read.customer == '3' ? 'selected' : ''%> >3번째사항</option>
+            <td><select id="clientsym" name="clientsym" style="width:50%;height:100%;">
+                    <option value="1">1번째사항</option>
+                    <option value="2">2번째사항</option>
+                    <option value="3">3번째사항</option>
+                </select>
+            </td>
+
+            <th>고장 증상</th>
+            <td><select id="repairsym" name="repairsym" style="width:50%;height:100%;">
+                    <option value="1">1
+                        번째사항</option>
+                    <option value="2">2번째사항</option>
+                    <option value="3">3번째사항</option>
                 </select>
             </td>
         </tr>
-        <tr>
-            <th>고객 TAG에 기입된 내용</th>
-            <td colspan="4"><input type="text" style="width: 99%;" value="<%=read.tag%>" name="tag" id="tag" required/></td>
-        </tr>
-        <tr>
-            <th>수리날짜</th>
-            <td><input type="date" id="repairdate" name="repairdate" value="<%=read.repairdate%>"/></td>
-            <th>의뢰날짜</th>
-            <td><input type="date" id="requestdate" name="requestdate" value="<%=read.requestdate%>"/></td>
 
+        <tr>
+            <th>수리내역</th>
+            <td colspan="4"><input type="text" style="width: 99%;" value="<%=read.comment%>" name="comment" id="comment" required/></td>
         </tr>
+
         <tr>
             <th>이미지 등록</th>
             <td colspan="5"><input type="file" name="photo" /></td>
@@ -79,28 +118,6 @@
 
     </table>
 </form>
-<!--<script>-->
-<!--    function onWriteSubmit()-->
-<!--    {-->
-<!--        if ( $("#writer").val().trim() == "" )-->
-<!--        {-->
-<!--            var message = "아이디를 입력해 주세요";-->
-<!--            $("#writer").val("");-->
-<!--            $("#writer").focus();-->
-<!--            alert(message);-->
-<!--            return false;-->
-<!--        }-->
 
-<!--        if ( $("#title").val().trim() == "" )-->
-<!--        {-->
-<!--            var message = "제목을 입력해 주세요";-->
-<!--            $("#title").val("");-->
-<!--            $("#title").focus();-->
-<!--            alert(message);-->
-<!--            return false;-->
-<!--        }-->
-
-<!--    }-->
-<!--</script>-->
 </body>
 </html>

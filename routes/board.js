@@ -20,7 +20,7 @@ router.get('/list',function (req,res,next){
 
 router.get('/list/:page',function(req, res, next) {
     var page = req.params.page;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate from report',function(err,rows){
+    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         // console.log(ffff);
@@ -30,8 +30,8 @@ router.get('/list/:page',function(req, res, next) {
 
 let null_to_string = function(rows){
     for(var i=0;i<rows.length;i++){
-        if(rows[i].requestdate == null) rows[i].requestdate = "-";
-        if(rows[i].repairdate == null) rows[i].repairdate = "-";
+        if(rows[i].startday == null) rows[i].startday= "-";
+        if(rows[i].endday == null) rows[i].endday = "-";
     }
 }
 
@@ -40,9 +40,10 @@ router.get('/read/:idx',function (req,res,next) {
     * url에서 gbidx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*/
     var idx = req.params.idx;
     console.log("idx : "+idx);
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate,image from report where idx=?',[idx],function(err,rows){
+    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report where idx=?',[idx],function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
      // 이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
+
         null_to_string(rows);
 
         var fs = require('fs');
@@ -77,7 +78,7 @@ router.get('/read/:idx',function (req,res,next) {
 router.get('/page/:page',function(req,res,next)
 {
     var page = req.params.page;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report',function(err,rows){
+    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         console.log('rows :' +  rows);
         console.log(rows[0]);
@@ -116,30 +117,30 @@ router.post('/write', upload.single("photo"), function(req, res) {
     *POST 방식의 요청을 URL에 데이터가 포함되지 않고 BODY에 포함되어 전송됩니다.
     * 때문에 request 객체를 통해 body에 접근 후 데이터를 가지고 옵니다.
      *  */
-    var body = req.body;
 
+    var body = req.body;
+    var sort=req.body.sort;
+    var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
-    var administer = req.body.administer;
-
-    var sn1=req.body.sn1;
-    var sn2=req.body.sn2;
-    var sn3 =req.body.sn3;
-    var tag = req.body.tag;
-    var adcompany1 = req.body.adcompany1;
-    var customer = req.body.customer;
-    var requestdate=req.body.requestdate;
-    if(requestdate == "") requestdate = null;
-    var repairdate=req.body.repairdate;
-    if(repairdate == "") repairdate = null;
+    var gearcompany= req.body.gearcompany;
+    var codenum=req.body.codenum;
+    var codeserial=req.body.codeserial;
+    var startday=req.body.startday;
+    if(startday == "") startday = null;
+    var endday=req.body.endday;
+    if(endday == "") endday = null;
+    var clientsym=req.body.clientsym;
+    var repairsym=req.body.repairsym;
+    var comment=req.body.comment;
     var file = req.file;
     var imagepath;
     if(file == undefined) imagepath = "upload/original.png";
     else imagepath = file.path
     connection.beginTransaction(function(err) {
         if(err) console.log(err);
-        connection.query('insert into report(title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate,image) values(?,?,?,?,?,?,?,?,?,?,?,?)'
-            ,[title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,requestdate,repairdate,imagepath]
+        connection.query('insert into report(sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,image) values(?,?,?,?,?,?,?,?,?,?,?,?,?)'
+            ,[sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath]
             ,function (err) {
                 if(err) {
                     /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
@@ -172,7 +173,7 @@ router.post('/write', upload.single("photo"), function(req, res) {
 
 router.get('/update/:idx',function(req,res,next) {
     var idx = req.params.idx;
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%Y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%Y-%m-%d\') as repairdate from report where idx=? ',[idx] ,function(err,rows){
+    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report where idx=?',[idx] ,function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         null_to_string(rows);
         console.log('rows :' +  rows);
@@ -185,30 +186,27 @@ router.get('/update/:idx',function(req,res,next) {
 router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var idx = req.params.idx;
     var body = req.body;
+    var sort=req.body.sort;
+    var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
-    var administer = req.body.administer;
-    var sn1 = req.body.sn1;
-    var sn2 = req.body.sn2;
-    var sn3 = req.body.sn3;
-    var tag = req.body.tag;
-    var adcompany1 = req.body.adcompany1;
-    var customer = req.body.customer;
-    var requestdate=req.body.requestdate;
-    if(requestdate == "") requestdate = null;
-    var repairdate=req.body.repairdate;
-    if(repairdate == "") repairdate = null;
-
+    var gearcompany= req.body.gearcompany;
+    var codenum=req.body.codenum;
+    var codeserial=req.body.codeserial;
+    var startday=req.body.startday;
+    if(startday == "") startday = null;
+    var endday=req.body.endday;
+    if(endday == "") endday = null;
+    var clientsym=req.body.clientsym;
+    var repairsym=req.body.repairsym;
+    var comment=req.body.comment;
     var file = req.file;
-
     var imagepath;
+
     if(file == undefined) imagepath = "upload/original.png";
     else imagepath = file.path
-
-    console.log(imagepath)
-
-    console.log(administer,sn1,sn2,sn3,tag,adcompany1,customer);
-    var query = connection.query('update report set title=?,writer=?,administer=?,sn1=?,sn2=?,sn3=?,tag=?,adcompany1=?,customer=?,image=?,requestdate=?,repairdate=? where idx=?', [title,writer,administer,sn1,sn2,sn3,tag,adcompany1,customer,imagepath,requestdate,repairdate,idx], function (err, rows) {
+    console.log(imagepath);
+    var query = connection.query('update report set sort=?,recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,repairsym=?,comment=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 });
@@ -238,7 +236,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
     var page = req.params.page;
     console.log(search);
     if(search_query == 1){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report where title=?', [search], function(err,rows){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where title=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             null_to_string(rows);
             console.log('rows :' +  rows);
@@ -247,27 +245,17 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
             console.log(rows.length-1);
         });
     }
-    if(search_query == 2){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report where requestdate=?', [search], function(err,rows){
-            if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-            null_to_string(rows);
-            console.log('rows :' +  rows);
-            // console.log(ffff);
-            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"수리날짜"});
-            console.log(rows.length-1);
-        });
-    }
-    // if(search_query == 3){
-    //     //     // 구현하시오~~~~~~~~~~~~~~~~~~~~~~
-    //     //     var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report where repairdate=?', [search], function(err,rows){
-    //     //         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-    //     //         null_to_string(rows);
-    //     //         console.log('rows :' +  rows);
-    //     //         // console.log(ffff);
-    //     //         res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"의뢰날짜"});
-    //     //         console.log(rows.length-1);
-    //     //     });
-    //     // }
+    // if(search_query == 2){
+    //     var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where startday=?', [search], function(err,rows){
+    //         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+    //         null_to_string(rows);
+    //         console.log('rows :' +  rows);
+    //         // console.log(ffff);
+    //         res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"수리날짜"});
+    //         console.log(rows.length-1);
+    //     });
+    // }
+    // // if(search_query == 3){
 
 });
 
@@ -289,28 +277,28 @@ router.post('/date_search', function(req, res) {
 
 router.get('/date_search/:date_search_query/:startdate/:enddate/:page', function(req, res){
     var date_search_query = req.params.date_search_query;
-    var startdate = req.params.startdate;
-    var enddate = req.params.enddate;
-    console.log(date_search_query, startdate, enddate);
+    var startday = req.params.startday;
+    var endday = req.params.endday;
+    console.log(date_search_query, startday, endday);
 
     var page = req.params.page;
     if(date_search_query == 1){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report where DATE(requestdate) BETWEEN ? AND ?', [startdate, enddate], function(err,rows){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(startday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             null_to_string(rows);
             console.log('rows :' +  rows);
             // console.log(ffff);
-            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search: startdate + "~" + enddate, search_query:"의뢰날짜"});
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search: startday + "~" + endday, search_query:"출고날짜"});
             console.log(rows.length-1);
         });
     }
     if(date_search_query == 2){
-        var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate from report where DATE(repairdate) BETWEEN ? AND ?', [startdate, enddate], function(err,rows){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(endday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             null_to_string(rows);
             console.log('rows :' +  rows);
             // console.log(ffff);
-            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search: startdate + "~" + enddate, search_query:"수리날짜"});
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search: startday + "~" + endday, search_query:"출고짜"});
             console.log(rows.length-1);
         });
     }
@@ -318,7 +306,7 @@ router.get('/date_search/:date_search_query/:startdate/:enddate/:page', function
 
 
 router.post('/download', function(req, res){
-    var query = connection.query('select idx,title,writer,administer,adcompany1,sn1,sn2,sn3,customer,tag,DATE_FORMAT(requestdate, \'%y-%m-%d\') as requestdate,DATE_FORMAT(repairdate, \'%y-%m-%d\') as repairdate,image from report',function(err,rows){
+    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report',function(err,rows){
         null_to_string(rows);
 
         var xl = require('excel4node'); // npm install excel4node --save 를 통해 설치
@@ -330,32 +318,39 @@ router.post('/download', function(req, res){
         var ws = wb.addWorksheet('Sheet 1');
 
         ws.cell(1, 1).string('번호');
-        ws.cell(1, 2).string('관리 요원');
-        ws.cell(1, 3).string('제품명');
-        ws.cell(1, 4).string('의뢰회사');
-        ws.cell(1, 5).string('삼성 S/N');
-        ws.cell(1, 6).string('제조사 S/N');
-        ws.cell(1, 7).string('KTF,SKT S/N');
-        ws.cell(1, 8).string('고객 접수 증상');
-        ws.cell(1, 9).string('의뢰날짜');
-        ws.cell(1, 10).string('수리날짜');
+        ws.cell(1, 2).string('수리분류');
+        ws.cell(1, 3).string('수리요청회사');
+        ws.cell(1, 4).string('최초고객사 및 담당자');
+        ws.cell(1, 5).string('모델명');
+        ws.cell(1, 6).string('장비제조사명');
+        ws.cell(1, 7).string('제품코드번호');
+        ws.cell(1, 8).string('제품시리얼번호');
+        ws.cell(1, 9).string('입고날짜');
+        ws.cell(1, 10).string('출고날짜');
+        ws.cell(1, 11).string('고객접수증상');
+        ws.cell(1, 12).string('고장증상');
+        ws.cell(1, 13).string('수리내역');
 
         for(var i=0;i<rows.length;i++){
             console.log(rows.length);
             ws.cell(2+i, 1).string(rows[i].idx.toString());
-            ws.cell(2+i, 2).string(rows[i].writer);
-            ws.cell(2+i, 3).string(rows[i].title);
-            ws.cell(2+i, 4).string(rows[i].administer);
-            ws.cell(2+i, 5).string(rows[i].sn1);
-            ws.cell(2+i, 6).string(rows[i].sn2);
-            ws.cell(2+i, 7).string(rows[i].sn3);
-            ws.cell(2+i, 8).string(rows[i].customer);
-            ws.cell(2+i, 9).string(rows[i].requestdate);
-            ws.cell(2+i, 10).string(rows[i].repairdate);
+            ws.cell(2+i, 2).string(rows[i].sort);
+            ws.cell(2+i, 3).string(rows[i].recompany);
+            ws.cell(2+i, 4).string(rows[i].writer);
+            ws.cell(2+i, 5).string(rows[i].title);
+            ws.cell(2+i, 6).string(rows[i].gearcompany);
+            ws.cell(2+i, 7).string(rows[i].codenum);
+            ws.cell(2+i, 8).string(rows[i].codeserial);
+            ws.cell(2+i, 9).string(rows[i].startday);
+            ws.cell(2+i, 10).string(rows[i].endday);
+            ws.cell(2+i, 11).string(rows[i].clientsym);
+            ws.cell(2+i, 12).string(rows[i].repairsym);
+            ws.cell(2+i, 13).string(rows[i].comment);
+
         }
 
         var rightNow = new Date();
-        wb.write('raybaro - ' + rightNow.toISOString().substring(0, 10) + '.xlsx', res);
+        wb.write('raybaro - ' + rightNow.toISOString().substring(0, 13) + '.xlsx', res);
 
     });
     //

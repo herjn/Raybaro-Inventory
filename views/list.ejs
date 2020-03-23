@@ -17,23 +17,21 @@
     </ul>
 </nav>
 
-<p>
-    <a href="/board/write" id="enter"> 자료 입력 </a>
-</p>
 
 <table border="1">
     <tr>
         <th>번호</th>
-        <th>관리 요원</th>
-        <th>제품명</th>
-        <th>의뢰회사</th>
-        <th>삼성 S/N</th>
-        <th>제조사 S/N</th>
-        <th>KTF,SKT S/N</th>
-        <th>고객 접수 증상</th>
-        <th>의뢰날짜</th>
-        <th>수리날짜</th>
-<!--        <th>재의뢰</th>-->
+        <th>수리분류</th>
+        <th>수리요청회사</th>
+        <th>최초고객사 및 담당자</th>
+        <th>모델명</th>
+        <th>장비제조사명</th>
+        <th>제품코드번호</th>
+        <th>제품시리얼번호</th>
+        <th>입고날짜</th>
+        <th>출고날짜</th>
+        <th>고객접수증상</th>
+        <th>고장증상</th>
     </tr>
     <%
     for(var i = 0; i<rows.length; i++){
@@ -41,15 +39,17 @@
     %>
     <tr>
         <td id="number"><%=i+1%></td>
-        <td><a href="/board/read/<%=data.idx%>"><%=data.writer%></a></td>
+        <td><a href="/board/read/<%=data.idx%>"><%=data.sort%></a></td>
+        <td><%=data.recompany%></td>
+        <td><%=data.writer%></td>
         <td><%=data.title%></td>
-        <td><%=data.adcompany1%></td>
-        <td><%=data.sn1%></td>
-        <td><%=data.sn2%></td>
-        <td><%=data.sn3%></td>
-        <td><%=data.customer%></td>
-        <td><%=data.requestdate%></td>
-        <td><%=data.repairdate%></td>
+        <td><%=data.gearcompany%></td>
+        <td><%=data.codenum%></td>
+        <td><%=data.codeserial%></td>
+        <td><%=data.startday%></td>
+        <td><%=data.endday%></td>
+        <td><%=data.clientsym%></td>
+        <td><%=data.repairsym%></td>
     </tr>
     <%
     }

@@ -1,0 +1,36 @@
+
+/*div {*/
+/*    overflow-x: auto;*/
+/*}*/
+header{
+    text-align:center;
+    color:gray;
+
+}
+span{
+    color:#4B5AAE;
+    font-size:40px;
+}
+table {
+    border-collapse:collapse;
+    margin-left:400px;
+    margin-top:90px;
+    text-align:center;
+    font-size:13px;
+
+}
+th,td{
+    padding: 20px;
+    text-align:center;
+    border-right: 2px solid black;
+
+}
+td {
+    font-size: 13px;
+}
+th{
+    color: white;
+    background: #4B5AAE;
+
+}
+

@@ -3,16 +3,16 @@
 /*}*/
 header{
     text-align:center;
-    color:lightgray;
+    color:gray;
 
 }
 span{
-    color:lightsteelblue;
+    color:#4B5AAE;
     font-size:40px;
 }
 
 ul { list-style: none; }
-nav { display: flex; justify-content: center; align-items: center;background-color: lightsteelblue;}
+nav { display: flex; justify-content: center; align-items: center;background-color:white;}
 /*padding: .25em; height: 55px;*/
 nav ul { flex: 1; display: flex; justify-content: flex-end; align-items: center; margin: 0; }
 nav ul li { padding: 0; margin: 0; }
@@ -21,37 +21,65 @@ nav ul li a { padding: 1em; font-size: 0.85em; display: flex; align-items: flex-
 
 a:link { text-decoration: none; color:black;}
 nav ul li a:visited { color: ghostwhite; text-decoration: none;}
-a:hover { color: lightsteelblue; text-decoration: none;}
+a:hover { color: gray; text-decoration: none;}
 
 p{
-    color:blue;
     text-align:right;
-    margin-right:20px;
-    padding-right : 150px;
-    font-size:20px;
+    font-size:16px;
     font-family: fantasy;
+    font-weight: bold;
 }
 /*div {*/
 /*    overflow-x: auto;*/
 /*}*/
 
 table {
-    width: 80%;
-    border:3px solid lightsteelblue;
     border-collapse:collapse;
     margin-left: auto;
     margin-right: auto;
+    width: 70%;
+    text-align:center;
+    border-top: 1px solid #444444;
+    border-right:white;
+    font-size:13px;
+    border-left:white;
+
 }
 th,td{
-    border:1px solid #44444;
     padding: 20px;
     text-align:center;
+    border-bottom: 1px solid #444444;
+}
+td {
+    font-size: 13px;
+    border-right: white;
+    border-left: white;
 }
 th{
-    background-color: white;
-}
-#enter{
-    color:slategray;
-    text-align:center;
+    color: white;
+    background: #4B5AAE;
+    border-right:#4B5AAE;
+    border-left:#4B5AAE;
 }
 
+#enter{
+    color:#4B5AAE;
+    text-align:center;
+    padding-right : 240px;
+}
+
+#excel {
+    color: #4B5AAE;
+    text-align: right;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    background: white;
+    border: 0px;
+    /*margin-left: 1180px;*/
+
+}
+
+.sb{
+
+}

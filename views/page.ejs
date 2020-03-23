@@ -18,23 +18,29 @@
     </ul>
 </nav>
 
+</p>
+
+
 <p>
+
     <a href="/board/write" id="enter"> 자료 입력 </a>
 </p>
+
 
 <table border="1">
     <tr>
         <th>번호</th>
-        <th>관리 요원</th>
-        <th>제품명</th>
-        <th>의뢰회사</th>
-        <th>삼성 S/N</th>
-        <th>제조사 S/N</th>
-        <th>KTF,SKT S/N</th>
-        <th>고객 접수 증상</th>
-        <th>의뢰날짜</th>
-        <th>수리날짜</th>
-        <!--        <th>재의뢰</th>-->
+        <th>수리분류</th>
+        <th>수리요청회사</th>
+        <th>최초고객사 및 담당자</th>
+        <th>모델명</th>
+        <th>장비제조사명</th>
+        <th>제품코드번호</th>
+        <th>제품시리얼번호</th>
+        <th>입고날짜</th>
+        <th>출고날짜</th>
+        <th>고객접수증상</th>
+        <th>고장증상</th>
     </tr>
     <%
     for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
@@ -45,21 +51,23 @@
     %>
     <tr>
         <td id="number"><%=i+1%></td>
-        <td><a href="/board/read/<%=data.idx%>"><%=data.writer%></a></td>
+        <td><a href="/board/read/<%=data.idx%>"><%=data.sort%></a></td>
+        <td><%=data.recompany%></td>
+        <td><%=data.writer%></td>
         <td><%=data.title%></td>
-        <td><%=data.adcompany1%></td>
-        <td><%=data.sn1%></td>
-        <td><%=data.sn2%></td>
-        <td><%=data.sn3%></td>
-        <td><%=data.customer%></td>
-        <td><%=data.requestdate%></td>
-        <td><%=data.repairdate%></td>
+        <td><%=data.gearcompany%></td>
+        <td><%=data.codenum%></td>
+        <td><%=data.codeserial%></td>
+        <td><%=data.startday%></td>
+        <td><%=data.endday%></td>
+        <td><%=data.clientsym%></td>
+        <td><%=data.repairsym%></td>
     </tr>
     <% }
     }
     %>
     <tr>
-        <td colspan="10">
+        <td id=page colspan="12">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>
@@ -70,39 +78,29 @@
         </td>
     </tr>
 </table>
-<p>
-    <form method="post" action="/board/search">
-        <select id="search_query" name="search_query">
-            <option value="1">제품명</option>
-            <option value="2">수리날짜</option>
-        </select>
-        <input type="text" name="search" id="search" required/>
-        <input type="submit" id="submit" value="검색">
-    </form>
 
-</p>
-
-<p>
-<form method="post" action="/board/date_search">
-    <select id="date_search_query" name="date_search_query">
-        <option value="1">의뢰날짜</option>
-        <option value="2">수리날짜</option>
+<form method="post" action="/board/search">
+    <select id="search_query" name="search_query">
+        <option value="1">모델명</option>
     </select>
-    <input type="date" id="startdate" name="startdate" required>
-    ~
-    <td><input type="date" id="enddate" name="enddate" required>
+    <input type="text" name="search" id="search" required/>
     <input type="submit" id="submit" value="검색">
 </form>
 
-</p>
+<form method="post" action="/board/date_search">
+    <select id="date_search_query" name="date_search_query">
+        <option value="1">입고날짜</option>
+        <option value="2">출고날짜</option>
+    </select>
+    <input type="date" id="startday" name="startday" required>
+    <td><input type="date" id="endday" name="endday" required>
+        <input type="submit" id="search" value="검색">
+</form>
 
+<form method="post" action="/board/download">
+    <input type="submit" id="excel" value="엑셀 다운로드">
+</form>
 
-
-<p>
-    <form method="post" action="/board/download">
-        <input type="submit" id="submit" value="엑셀 다운로드">
-    </form>
-</p>
 
 </body>
 </html>

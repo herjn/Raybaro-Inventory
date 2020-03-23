@@ -1,36 +1,48 @@
-div {
-  overflow-x: auto;
-}
+/*div {*/
+/*  overflow-x: auto;*/
+/*}*/
+
 table {
-  width: 70%;
-  border:3px solid lightsteelblue;
   border-collapse:collapse;
   margin-left:220px;
   margin-top:100px;
+  text-align:center;
+  border-top: 1px solid #444444;
+
+  font-size:13px;
+
+
 }
 th,td{
   padding: 20px;
-  border:2.5px solid lightsteelblue;
+  text-align:center;
+  border-bottom: 1px solid #444444;
+}
+td {
+  font-size: 13px;
+
 }
 th{
-  background-color: white;
+  color: black;
+  border-right:#4B5AAE;
+  border-left:#4B5AAE;
 }
+
 #main{
-  font-size:25px;
+  font-size:23px;
   margin:auto;
   text-align: center;
-  background-color:lightsteelblue;
+  background-color: #4B5AAE;
   color:white;
   font-weight:bold;
 }
-
 
 input[type=submit] {
   padding: auto;
   margin: auto;
   display:flex;
   border: 0 none;
-  background-color: lightsteelblue;
+  background-color:  #4B5AAE;
   cursor: pointer;
   color:white;
   font-weight:bold;

@@ -2,62 +2,63 @@
 <html>
 <head>
     <title><%=title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/read.css' />
 </head>
 <%var read = rows[0]; %>
+<header><h1> <span>Raybaro</span> Database System </h1></header>
+
 <body>
 <table border="2">
     <tr>
-        <th>관리요원 성명</th>
-        <td><%=read.writer%></td>
-        <th>제품명</th>
-        <td><%=read.title%></td>
+        <th>수리 분류</th>
+        <td><%=read.sort%></td>
+        <th>수리요청회사</th>
+        <td><%=read.recompany%></td>
         <th>이미지</th>
-        <td> <img src=<%= "./../../" + read.image %>  width="100" height="100"> </td>
-
-    </tr>
-    <tr>
-        <th>관리국</th>
-        <td><%=read.administer%></td>
-        <th>의뢰 회사</th>
-        <td colspan="4"><%=read.companya%></td>
-    </tr>
-    <tr>
-        <th>제조사S/N</th>
-        <td><%=read.sn1%></td>
-        <th>삼성S/N</th>
-        <td><%=read.sn2%></td>
-        <th>KTF,SKT S/N</th>
-        <td><%=read.sn3%></td>
-    </tr>
-    <tr>
-        <th>고객 TAG에 기입된 내용</th>
-        <td colspan="6" height="400" ><%=read.tag%></td>
+        <td> <img src=<%= "./../../" + read.image %>  width="50" height="50"> </td>
     </tr>
 
     <tr>
-        <th>수리날짜</th>
-        <td><%=read.repairdate%></td>
-        <th>의뢰날짜</th>
-        <td><%=read.requestdate%></td>
+        <th>최초 고객사 및 담당자</th>
+        <td><%=read.writer%></td>
+        <th>모델명</th>
+        <td><%=read.title%></td>
+        <th>장비제조사명</th>
+        <td><%=read.gearcompany%></td>
+    </tr>
+    <tr>
+        <th>제품 코드 번호</th>
+        <td><%=read.codenum%></td>
+        <th>제품 시리얼 번호</th>
+        <td><%=read.codeserial%></td>
+        <th>고객 접수 증상</th>
+        <td><%=read.clientsym%></td>
+    </tr>
+    <tr>
+        <th>입고날짜</th>
+        <td><%=read.startday%></td>
+        <th>출고날짜</th>
+        <td><%=read.endday%></td>
+        <th>고장 증상</th>
+        <td><%=read.repairsym%></td>
     </tr>
 
+    <tr>
+        <th>수리 내역</th>
+        <td colspan="6" height="200" ><%=read.comment%></td>
+    </tr>
+    
 
-    </table>
+</table>
 
     <p>
-        <a href="/board/list"> 목록으로 가기 </a>
-    </p>
+        <a href="/board/list"> 목록으로 </a>
 
-    <p>
         <a href="/board/update/<%=read.idx %>"> 수정하기</a>
 
-    </p>
-
-    <P>
         <a href="/board/delete/<%=read.idx %>"> 삭제하기</a>
 
-    </P>
+    </p>
 
 </body>
 </html>
