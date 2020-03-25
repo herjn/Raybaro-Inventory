@@ -35,15 +35,13 @@ p{
 
 table {
     border-collapse:collapse;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+    margin-left:150px;
+    width:86%;
     text-align:center;
     border-top: 1px solid #444444;
     border-right:white;
     font-size:13px;
     border-left:white;
-
 }
 th,td{
     padding: 20px;
@@ -62,24 +60,112 @@ th{
     border-left:#4B5AAE;
 }
 
-#enter{
-    color:#4B5AAE;
-    text-align:center;
-    padding-right : 240px;
-}
+/*#enter{*/
+/*    color:#4B5AAE;*/
+/*    text-align:center;*/
+/*}*/
 
 #excel {
+    color: white;
+    font-family: fantasy;
+    font-size: 14px;
+    font-weight: bold;
+    background: #4B5AAE;
+    border-radius:20px;
+    border:1px white;
+    /*margin-left: 1180px;*/
+}
+
+.searchbar{
+    margin-left:170px;
+    padding-left:200px;
+
+}
+
+/*.download{*/
+/*    margin-left:300px;*/
+/*    padding-left:600px;*/
+/*    color: #4B5AAE;*/
+/*    font-family: fantasy;*/
+/*    font-size: 15px;*/
+/*    font-weight: bold;*/
+/*    background: white;*/
+/*    border: 0px;*/
+/*}*/
+.down1{
+    width:90px;
+    float:left;
+    margin-right:20px;
+    padding:20px;
+    margin-left:1200px;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    color:white;
+    border: 0px;
+}
+.down2{
+    width:90px;
+    float:left;
+    padding:18px;
+    font-size:16px;
+
+
+}
+#enter{
     color: #4B5AAE;
-    text-align: right;
     font-family: fantasy;
     font-size: 15px;
     font-weight: bold;
     background: white;
     border: 0px;
-    /*margin-left: 1180px;*/
-
 }
 
-.sb{
+.bar1{
+    width:300px;
+    height:100px;
+    padding:30px;
+    float:left;
+    margin-right:5px;
+
+}
+.bar2{
+    width:600px;
+    height:100px;
+    float:left;
+    padding:30px;
+}
+
+#search_query{
+    color: #4B5AAE;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px black;
+
+}
+#date_search_query{
+    color: #4B5AAE;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px black;
+}
+#search1{
+    background:#4B5AAE;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px black;
+    color:white;
+
+}
+#search2{
+    background:#4B5AAE;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px black;
+    color:white;
 
 }

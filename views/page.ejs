@@ -18,13 +18,17 @@
     </ul>
 </nav>
 
-</p>
+<div class="download">
+    <div class="down1">
+        <form method="post" action="/board/download">
+            <input type="submit" id="excel" value="엑셀 다운로드">
+        </form>
+    </div>
+    <div class="down2">
+        <a href="/board/write" id="enter"> 자료 입력 </a>
+    </div>
+</div>
 
-
-<p>
-
-    <a href="/board/write" id="enter"> 자료 입력 </a>
-</p>
 
 
 <table border="1">
@@ -79,28 +83,40 @@
     </tr>
 </table>
 
-<form method="post" action="/board/search">
-    <select id="search_query" name="search_query">
-        <option value="1">모델명</option>
-    </select>
-    <input type="text" name="search" id="search" required/>
-    <input type="submit" id="submit" value="검색">
-</form>
+<div class ="searchbar">
+    <div class="bar1">
+        <form method="post" action="/board/search">
+            <select id="search_query" name="search_query">
+                <option value="1">모델명</option>
+            </select>
+            <input type="text" name="search" id="search" required/>
+            <input type="submit" id="search1" value="검색">
+        </form>
+    </div>
+    <div class="bar2">
+        <form method="post" action="/board/date_search">
+            <select id="date_search_query" name="date_search_query">
+                <option value="1">입고날짜</option>
+                <option value="2">출고날짜</option>
+            </select>
+            <input type="date" id="startday" name="startday" required>
+            <td><input type="date" id="endday" name="endday" required>
+                <input type="submit" id="search2" value="검색">
+        </form>
+    </div>
 
-<form method="post" action="/board/date_search">
-    <select id="date_search_query" name="date_search_query">
-        <option value="1">입고날짜</option>
-        <option value="2">출고날짜</option>
-    </select>
-    <input type="date" id="startday" name="startday" required>
-    <td><input type="date" id="endday" name="endday" required>
-        <input type="submit" id="search" value="검색">
-</form>
-
-<form method="post" action="/board/download">
-    <input type="submit" id="excel" value="엑셀 다운로드">
-</form>
-
+</div>
+<!--<div class="searchbar2">-->
+<!--    <form method="post" action="/board/date_search">-->
+<!--        <select id="date_search_query" name="date_search_query">-->
+<!--            <option value="1">입고날짜</option>-->
+<!--            <option value="2">출고날짜</option>-->
+<!--        </select>-->
+<!--        <input type="date" id="startday" name="startday" required>-->
+<!--        <td><input type="date" id="endday" name="endday" required>-->
+<!--            <input type="submit" id="search" value="검색">-->
+<!--    </form>-->
+<!--</div>-->
 
 </body>
 </html>
