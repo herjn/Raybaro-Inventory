@@ -7,25 +7,30 @@
 </head>
 
 <body>
-<header><h1> <span>Raybaro</span> Database System </h1></header>
+<header>
+    <div class="wrapper">
+        <h1><a href="#"><span>Raybaro </span><span class="id">Database System</span> </a></h1>
+    </div>
+</header>
 
-<nav class=""sticky_nav>
-    <ul class="nav-container">
-        <li class="nav-item"><a href=""></a></li>
-        <li class="nav-item"><a href=""></a></li>
-        <li class="nav-item"><a href=""></a></li>
-        <li class="nav-item"><a href=""></a></li>
+<nav>
+    <ul class="menu">
+        <li><a href="/board/page" id="menubar">홈으로</a></li>
+        <li><a href="/board/write" id="menubar">자료입력</a></li>
+        <li><a href="" id="menubar">검색하기</a></li>
     </ul>
 </nav>
 
+
+
 <div class="download">
     <div class="down1">
+        <a href="/board/write>" id="enter"> 자료 입력 </a>
+    </div>
+    <div class="down2">
         <form method="post" action="/board/download">
             <input type="submit" id="excel" value="엑셀 다운로드">
         </form>
-    </div>
-    <div class="down2">
-        <a href="/board/write" id="enter"> 자료 입력 </a>
     </div>
 </div>
 
@@ -55,7 +60,7 @@
     %>
     <tr>
         <td id="number"><%=i+1%></td>
-        <td><a href="/board/read/<%=data.idx%>"><%=data.sort%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.sort%></a></td>
         <td><%=data.recompany%></td>
         <td><%=data.writer%></td>
         <td><%=data.title%></td>

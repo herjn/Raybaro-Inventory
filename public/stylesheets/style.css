@@ -1,11 +1,63 @@
-/*div {*/
-/*  overflow-x: auto;*/
-/*}*/
 
+header{
+  text-align:center;
+  color:gray;
+  width:85%;
+  margin-left:140px;
+
+
+}
+span{
+  color:#4B5AAE;
+  font-size:40px;
+}
+#menubar{
+  color:white;
+}
+a{
+  color:black;
+}
+
+ul {
+  list-style: none;
+}
+.id{
+  color:darkgray;
+  font-size:35px;
+
+}
+nav{
+  display:block;
+  width:100px;
+  height:500px;
+  float:left;
+  padding:20px;
+  margin-left:10px;
+  line-height:80px;
+  background:#4B5AAE;
+}
+nav ul a {
+  text-align: center;
+
+}
+nav ul{
+  list-style-type: none;
+  padding-left:20px;
+}
+nav ul li{
+  border-bottom:1px solid #c0c0c0;
+}
+
+a:link {
+  text-decoration: none;
+  color:white;
+  text-align:center;
+
+}
 table {
   border-collapse:collapse;
   margin-left:220px;
-  margin-top:100px;
+  margin-top:40px;
   text-align:center;
   border-top: 1px solid #444444;
 
@@ -20,8 +72,9 @@ th,td{
 }
 td {
   font-size: 13px;
-
+  background-color:whitesmoke;
 }
+
 th{
   color: black;
   border-right:#4B5AAE;
@@ -51,7 +104,9 @@ input[type=submit] {
   text-align: center;
   font-size: 15px;
 }
-
+#end{
+  background-color:white;
+}
 a:link { text-decoration: none; color:black;}
 a:visited { color: black; text-decoration: none;}
 a:hover { color: lightsteelblue; text-decoration: none;}

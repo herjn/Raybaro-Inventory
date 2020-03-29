@@ -4,31 +4,90 @@
 header{
     text-align:center;
     color:gray;
+    width:85%;
+    margin-left:140px;
+
 
 }
 span{
     color:#4B5AAE;
     font-size:40px;
 }
-
-ul { list-style: none; }
-nav { display: flex; justify-content: center; align-items: center;background-color:white;}
-/*padding: .25em; height: 55px;*/
-nav ul { flex: 1; display: flex; justify-content: flex-end; align-items: center; margin: 0; }
-nav ul li { padding: 0; margin: 0; }
-nav ul li a { padding: 1em; font-size: 0.85em; display: flex; align-items: flex-end; color:lightsteelblue; }
-
-
-a:link { text-decoration: none; color:black;}
-nav ul li a:visited { color: ghostwhite; text-decoration: none;}
-a:hover { color: gray; text-decoration: none;}
-
-p{
-    text-align:right;
-    font-size:16px;
-    font-family: fantasy;
-    font-weight: bold;
+#menubar{
+    color:white;
 }
+a{
+    color:black;
+}
+
+ul {
+    list-style: none;
+}
+.id{
+    color:darkgray;
+    font-size:35px;
+
+}
+/*nav {*/
+/*    display: flex; justify-content: center; align-items: center;background-color:lightsteelblue;*/
+/*}*/
+/*!*padding: .25em; height: 55px;*!*/
+/*nav ul {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*    align-items: center;*/
+/*    margin: 0;*/
+/*}*/
+/*nav ul li {*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
+/*nav ul li a {*/
+/*    padding: 1em;*/
+/*    font-size: 0.85em;*/
+/*    display: flex;*/
+/*    align-items: flex-end;*/
+/*    color:white;*/
+/*}*/
+nav{
+    display:block;
+    width:100px;
+    height:500px;
+    float:left;
+    padding:10px;
+    margin-left:10px;
+    line-height:80px;
+    background:#4B5AAE;
+}
+nav ul a {
+    text-align: center;
+
+}
+nav ul{
+    list-style-type: none;
+    padding-left:20px;
+}
+nav ul li{
+    border-bottom:1px solid #c0c0c0;
+}
+
+a:link {
+    text-decoration: none;
+    color:white;
+    text-align:center;
+
+}
+/*nav ul li a:visited {*/
+/*    color: ghostwhite;*/
+/*    text-decoration: none;*/
+/*}*/
+/*a:hover {*/
+/*    color: gray;*/
+/*    text-decoration: none;*/
+/*}*/
+
+
 /*div {*/
 /*    overflow-x: auto;*/
 /*}*/
@@ -52,6 +111,7 @@ td {
     font-size: 13px;
     border-right: white;
     border-left: white;
+    background:ghostwhite;
 }
 th{
     color: white;
@@ -95,11 +155,10 @@ th{
 .down1{
     width:90px;
     float:left;
-    margin-right:20px;
+    margin-right:2px;
     padding:20px;
-    margin-left:1200px;
+    margin-left:1050px;
     font-family: fantasy;
-    font-size: 15px;
     font-weight: bold;
     color:white;
     border: 0px;
@@ -108,8 +167,6 @@ th{
     width:90px;
     float:left;
     padding:18px;
-    font-size:16px;
-
 
 }
 #enter{

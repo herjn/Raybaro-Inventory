@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>RAYBARO</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 
+<header>
+    <div class="wrapper">
+        <h1><a href="#"><span>Raybaro </span><span class="id">Database System</span> </a></h1>
+    </div>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="#" id="menubar">홈으로</a></li>
+        <li><a href="/board/write" id="menubar">자료입력</a></li>
+        <li><a href="" id="menubar">검색하기</a></li>
+    </ul>
+</nav>
+
+
 <body>
+
 
 <form method="post" action="/board/write" onsubmit="onWriteSubmit()" enctype="multipart/form-data">
     <table>
@@ -66,7 +81,17 @@
                 </select>
             </td>
             <th>장비 제조사명</th>
-            <td><input type="text" name="gearcompany" id="gearcompany" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <td><select id="gearcompany" name="gearcompany" >
+                    <option value="1">keysight(hp,agilent)</option>
+                    <option value="2">키슬리</option>
+                    <option value="3">로데슈바르츠</option>
+                    <option value="4">아이텍</option>
+                    <option value="5">텍트로닉스</option>
+                    <option value="6">시멘트로콤사</option>
+                    <option value="7">트림블</option>
+
+                </select>
+            </td>
             <th>제품 코드 번호</th>
             <td><input type="text" name="codenum" id="codenum" style="width:50%;height:50%;font-size:15px;" required/></td>
         </tr>
@@ -95,10 +120,10 @@
 
         <tr>
             <th>이미지 등록</th>
-            <td colspan="6"><input type="file" name="photo" id="image"/></td>
+            <td colspan="6" id="end"><input type="file" name="photo" id="image"/></td>
         </tr>
         <tr>
-            <td colspan="6"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
+            <td colspan="6" id="end"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>
         </tbody>
 
