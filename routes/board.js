@@ -136,7 +136,9 @@ router.post('/write', upload.single("photo"), function(req, res) {
     var file = req.file;
     var imagepath;
     if(file == undefined) imagepath = "upload/original.png";
-    else imagepath = file.path
+    else imagepath = file.path;
+
+    console.log(sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath);
     connection.beginTransaction(function(err) {
         if(err) console.log(err);
         connection.query('insert into report(sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,image) values(?,?,?,?,?,?,?,?,?,?,?,?,?)'
@@ -204,9 +206,9 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var imagepath;
 
     if(file == undefined) imagepath = "upload/original.png";
-    else imagepath = file.path
+    else imagepath = file.path;
     console.log(imagepath);
-    var query = connection.query('update report set sort=?,recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,repairsym=?,comment=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,idx], function (err, rows) {
+    var query = connection.query('update report set sort=?,recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,repairsym=?,comment=?,image=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 });
@@ -236,12 +238,42 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
     var page = req.params.page;
     console.log(search);
     if(search_query == 1){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where writer=?', [search], function(err,rows){
+            if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+            null_to_string(rows);
+            console.log('rows :' +  rows);
+            // console.log(ffff);
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"고객명"});
+            console.log(rows.length-1);
+        });
+    }
+    if(search_query == 2){
         var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where title=?', [search], function(err,rows){
             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
             null_to_string(rows);
             console.log('rows :' +  rows);
             // console.log(ffff);
             res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"제품명"});
+            console.log(rows.length-1);
+        });
+    }
+    if(search_query == 3){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where codenum=?', [search], function(err,rows){
+            if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+            null_to_string(rows);
+            console.log('rows :' +  rows);
+            // console.log(ffff);
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"제품코드"});
+            console.log(rows.length-1);
+        });
+    }
+    if(search_query == 4){
+        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where codeserial=?', [search], function(err,rows){
+            if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+            null_to_string(rows);
+            console.log('rows :' +  rows);
+            // console.log(ffff);
+            res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"시리얼번호"});
             console.log(rows.length-1);
         });
     }
@@ -302,6 +334,11 @@ router.get('/date_search/:date_search_query/:startdate/:enddate/:page', function
             console.log(rows.length-1);
         });
     }
+});
+
+
+router.get('/search_home', function(req, res){
+    res.render('search_home', {title:'Search'});
 });
 
 
