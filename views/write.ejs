@@ -34,37 +34,20 @@
         <tbody>
         <tr>
             <th>수리 분류</th>
-            <td><select id="sort" name="sort" style="width:50%;height:100%;">
-                    <option value="1">통신계측기수리</option>
-                    <option value="2">기지국장비수리</option>
-                    <option value="3">전자저울수리</option>
+            <td>
+                <select name='sort' id='sort' style='width:50%;height:100%;'>
+                <% for (var i=0; i < sort_data.length; i++) { %>
+                    <option value=<%= i + 1 %>> <%=sort_data[i].name%> </option>
+                <% } %>
                 </select>
             </td>
+
             <th>수리 요청 회사</th>
-            <td><select id="recompany" name="recompany" style="width:50%;height:100%;">
-                    <option value="1">누비콤</option>
-                    <option value="2">키사이트테크놀로지</option>
-                    <option value="3">삼성전자</option>
-                    <option value="4">삼성SDS</option>
-                    <option value="5">온세미세미컨덕터</option>
-                    <option value="6">큐웨이</option>
-                    <option value="7">엘지전자</option>
-                    <option value="8">파워넷</option>
-                    <option value="9">아이텍전자</option>
-                    <option value="10">트림블</option>
-                    <option value="11">히로세코리아</option>
-                    <option value="12">울쏘하이텍</option>
-                    <option value="13">아비코전자</option>
-                    <option value="14">비스타콤</option>
-                    <option value="15">고려대학교</option>
-                    <option value="16">국민대학교</option>
-                    <option value="17">대전테크노파크</option>
-                    <option value="18">히다찌엘지</option>
-                    <option value="19">평일</option>
-                    <option value="20">맥스텍</option>
-                    <option value="21">카이네트웍스</option>
-                    <option value="22">파워넷</option>
-                    <option value="23">성호전자</option>
+            <td>
+                <select name='recompany' id=recompany' style='width:50%;height:100%;'>
+                    <% for (var i=0; i < recompany_data.length; i++) { %>
+                        <option value=<%= i + 1 %>> <%=recompany_data[i].name%> </option>
+                    <% } %>
                 </select>
             </td>
             <th>최초 고객사 및 담당자</th>
@@ -73,22 +56,19 @@
 
         <tr>
             <th>모델명</th>
-            <td><select id="title" name="title" >
-                    <option value="1">통신계측기</option>
-                    <option value="2">기지국장비</option>
-                    <option value="3">전자저울</option>
+            <td>
+                <select name='title' id=title' style='width:50%;height:100%;'>
+                    <% for (var i=0; i < title_data.length; i++) { %>
+                        <option value=<%= i + 1 %>> <%=title_data[i].name%> </option>
+                    <% } %>
                 </select>
             </td>
             <th>장비 제조사명</th>
-            <td><select id="gearcompany" name="gearcompany" >
-                    <option value="1">keysight(hp,agilent)</option>
-                    <option value="2">키슬리</option>
-                    <option value="3">로데슈바르츠</option>
-                    <option value="4">아이텍</option>
-                    <option value="5">텍트로닉스</option>
-                    <option value="6">시멘트로콤사</option>
-                    <option value="7">트림블</option>
-
+            <td>
+                <select name='gearcompany' id=gearcompany' style='width:50%;height:100%;'>
+                    <% for (var i=0; i < gearcompany_data.length; i++) { %>
+                        <option value=<%= i + 1 %>> <%=gearcompany_data[i].name%> </option>
+                    <% } %>
                 </select>
             </td>
             <th>제품 코드 번호</th>
