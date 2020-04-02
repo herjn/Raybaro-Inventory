@@ -6,6 +6,20 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 </head>
 <%var read = rows[0]; %>
+<header>
+    <div class="wrapper">
+        <h1><a href="#"><span>Raybaro </span><span class="id">Database System</span> </a></h1>
+    </div>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="/board/page/1" id="menubar">메인화면</a></li>
+        <li><a href="/board/write" id="menubar">자료입력</a></li>
+        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
+    </ul>
+</nav>
+
 <body>
 
 <form method="post" action="/board/update/<%= read.idx %>" onsubmit="onWriteSubmit()" enctype="multipart/form-data">
@@ -72,8 +86,6 @@
             <td><input type="text" name="gearcompany" value="<%=read.gearcompany%>"style="width:50%;height:50%;font-size:15px;" required/></td>
             <th>제품 코드 번호</th>
             <td><input type="text" name="codenum" value="<%=read.codenum%>" style="width:50%;height:50%;font-size:15px;" required/></td>
-            <th>제품 시리얼 번호</th>
-            <td><input type="text" name="codeserial" value="<%=read.codeserial%>" style="width:50%;height:100%;font-size:15px;" required/></td>
         </tr>
 
         <tr>
@@ -84,12 +96,19 @@
         </tr>
 
         <tr>
+            <th>제품 시리얼 번호</th>
+            <td><input type="text" name="codeserial" value="<%=read.codeserial%>" style="width:50%;height:100%;font-size:15px;" required/></td>
             <th>고객 접수 증상</th>
             <td><input type="text" name="clientsym" id="clientsym" style="width:50%;height:50%;font-size:15px;" value="<%=read.clientsym%>" required/></td>
 
+        </tr>
+
+        <tr>
             <th>고장 증상</th>
             <td><input type="text" name="repairsym" id="repairsym" style="width:50%;height:50%;font-size:15px;" value="<%=read.repairsym%>" required/></td>
             </td>
+            <th>이미지 등록</th>
+            <td><input type="file" name="photo"/></td>
         </tr>
 
         <tr>
@@ -97,10 +116,6 @@
             <td colspan="4"><input type="text" style="width: 99%;" value="<%=read.comment%>" name="comment" id="comment" required/></td>
         </tr>
 
-        <tr>
-            <th>이미지 등록</th>
-            <td colspan="5"><input type="file" name="photo"/></td>
-        </tr>
         <tr>
             <td colspan="6"><input type="submit" id="submit" value="수정하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>

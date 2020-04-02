@@ -10,7 +10,7 @@
 <body>
 <nav>
     <ul class="menu">
-        <li><a href="/board/page/1" id="menubar">홈으로</a></li>
+        <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
         <li><a href="/board/search_home" id="menubar">검색하기</a></li>
     </ul>
@@ -58,14 +58,13 @@
 
 </table>
 
-    <p>
-        <a href="/board/list"> 목록으로 </a>
+    <div class="three">
+        <a href="/board/list" id="list"> 목록으로 </a>
 
-        <a href="/board/update/<%=read.idx %>"> 수정하기</a>
+        <a href="/board/update/<%=read.idx %>" id="update"> 수정하기</a>
 
-        <a href="/board/delete/<%=read.idx %>"> 삭제하기</a>
-
-    </p>
+        <a href="/board/delete/<%=read.idx %>"id="delete"> 삭제하기</a>
+    </div>
 
 </body>
 </html>

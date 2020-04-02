@@ -13,6 +13,11 @@ span{
 }
 #menubar{
     color:white;
+    text-align: center;
+    font-weight:bold;
+}
+.menu{
+    margin-top:100px;
 }
 
 .id{
@@ -22,11 +27,13 @@ span{
 }
 nav{
     display:block;
+    display:inline;
     width:100px;
+    margin: 27px;
     height:500px;
     float:left;
-    padding:20px;
-    margin-left:10px;
+    padding:10px;
+    margin-left:230px;
     line-height:80px;
     background:#4B5AAE;
 }
@@ -38,9 +45,7 @@ nav ul{
     list-style-type: none;
     padding-left:20px;
 }
-nav ul li{
-    border-bottom:1px solid #c0c0c0;
-}
+
 span{
     color:#4B5AAE;
     font-size:40px;
@@ -48,7 +53,7 @@ span{
 table {
     border-collapse:collapse;
     margin-left:400px;
-    margin-top:90px;
+    margin-top:50px;
     text-align:center;
     font-size:13px;
 
@@ -68,16 +73,6 @@ th{
 
 }
 
-nav{
-    display:block;
-    width:100px;
-    height:500px;
-    float:left;
-    padding:10px;
-    margin-left:10px;
-    line-height:80px;
-    background:#4B5AAE;
-}
 nav ul a {
     text-align: center;
 
@@ -86,13 +81,53 @@ nav ul{
     list-style-type: none;
     padding-left:20px;
 }
-nav ul li{
-    border-bottom:1px solid #c0c0c0;
-}
 
 a:link {
     text-decoration: none;
     color:white;
     text-align:center;
 
+}
+.three{
+    margin-top:20px;
+    margin-left:690px;
+
+}
+#list{
+    width:150px;
+    padding:2px;
+    font-weight:bold;
+    text-align:center;
+    font-size:15px;
+    color: white;
+    background-color:lightslategray;
+    margin-right: 10px;
+    border-radius:20px;
+    border:1px;
+
+
+}
+#delete{
+    width:150px;
+    padding:2px;
+    text-align:center;
+    font-size:15px;
+    color: white;
+    font-weight:bold;
+    background-color:lightslategray;
+    margin-right: 10px;
+    border-radius:20px;
+    border:1px;
+}
+#update{
+    width:150px;
+    padding:2px;
+    text-align:center;
+    font-size:15px;
+    color: white;
+    background-color:lightslategray;
+    margin-right: 10px;
+    border-radius:20px;
+    font-weight:bold;
+    border:1px;
 }

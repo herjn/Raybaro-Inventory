@@ -4,15 +4,18 @@ header{
   color:gray;
   width:85%;
   margin-left:140px;
-
-
 }
 span{
   color:#4B5AAE;
-  font-size:40px;
+  font-size:36px;
 }
 #menubar{
   color:white;
+  font-size:15px;
+  font-weight:bold;
+}
+.menu{
+  margin-top:70px;
 }
 a{
   color:black;
@@ -28,11 +31,12 @@ ul {
 }
 nav{
   display:block;
-  width:100px;
-  height:500px;
+  width:90px;
+  height:400px;
   float:left;
   padding:20px;
-  margin-left:10px;
+  margin: 27px;
+  margin-left:150px;
   line-height:80px;
   background:#4B5AAE;
 }
@@ -44,9 +48,7 @@ nav ul{
   list-style-type: none;
   padding-left:20px;
 }
-nav ul li{
-  border-bottom:1px solid #c0c0c0;
-}
+
 
 a:link {
   text-decoration: none;
@@ -56,7 +58,7 @@ a:link {
 }
 table {
   border-collapse:collapse;
-  margin-left:220px;
+  margin-left:360px;
   margin-top:40px;
   text-align:center;
   border-top: 1px solid #444444;
@@ -92,7 +94,7 @@ th{
 
 input[type=submit] {
   padding: auto;
-  margin: auto;
+  margin-left:120px;
   display:flex;
   border: 0 none;
   background-color:  #4B5AAE;

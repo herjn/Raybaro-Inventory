@@ -13,8 +13,13 @@ span{
     color:#4B5AAE;
     font-size:40px;
 }
+.menu{
+    margin-top:30px;
+}
 #menubar{
     color:white;
+    font-size:15px;
+    font-weight:bold;
 }
 a{
     color:black;
@@ -52,25 +57,24 @@ ul {
 /*}*/
 nav{
     display:block;
+    display:inline;
     width:100px;
-    height:500px;
+    margin: 27px;
+    height:200px;
     float:left;
     padding:10px;
-    margin-left:10px;
-    line-height:80px;
+    margin-left:30px;
+    line-height:50px;
     background:#4B5AAE;
 }
 nav ul a {
     text-align: center;
-
 }
 nav ul{
     list-style-type: none;
     padding-left:20px;
 }
-nav ul li{
-    border-bottom:1px solid #c0c0c0;
-}
+
 
 a:link {
     text-decoration: none;
@@ -179,7 +183,7 @@ th{
 }
 
 .bar1{
-    width:300px;
+    width:330px;
     height:100px;
     padding:30px;
     float:left;
