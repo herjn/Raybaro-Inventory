@@ -33,6 +33,9 @@ ul {
     font-size:35px;
 
 }
+h5{
+    font-size:15px;
+}
 /*nav {*/
 /*    display: flex; justify-content: center; align-items: center;background-color:lightsteelblue;*/
 /*}*/
@@ -82,19 +85,7 @@ a:link {
     text-align:center;
 
 }
-/*nav ul li a:visited {*/
-/*    color: ghostwhite;*/
-/*    text-decoration: none;*/
-/*}*/
-/*a:hover {*/
-/*    color: gray;*/
-/*    text-decoration: none;*/
-/*}*/
 
-
-/*div {*/
-/*    overflow-x: auto;*/
-/*}*/
 
 table {
     border-collapse:collapse;
@@ -103,7 +94,7 @@ table {
     text-align:center;
     border-top: 1px solid #444444;
     border-right:white;
-    font-size:13px;
+    font-size:11px;
     border-left:white;
 }
 th,td{
@@ -180,6 +171,17 @@ th{
     font-weight: bold;
     background: white;
     border: 0px;
+}
+#mm{
+    color: #4B5AAE;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: bold;
+    background: white;
+    border: 0px;
+    padding-right:10px;
+
+
 }
 
 .bar1{

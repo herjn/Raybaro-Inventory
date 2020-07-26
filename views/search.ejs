@@ -17,10 +17,13 @@
     </ul>
 </nav>
 
-<h1> <%= search_query %>  <%= search %>  검색결과 </h1>
-
-<a href="/board/page/1"> 메인으로 </a>
 <p>
+<h5> <%= search_query %>  <%= search %>  검색결과 </h5>
+</p>
+
+
+<p>
+    <a href="/board/page/1" id="mm"> 메인으로 </a>
     <a href="/board/write" id="enter"> 자료 입력 </a>
 </p>
 
@@ -65,7 +68,7 @@
     }
     %>
     <tr>
-        <td colspan="10">
+        <td colspan="20">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>
