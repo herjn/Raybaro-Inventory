@@ -618,7 +618,7 @@ router.post('/download', function(req, res){
                         ws.cell(1, 9).string('입고날짜');
                         ws.cell(1, 10).string('출고날짜');
                         ws.cell(1, 11).string('고객접수증상');
-                        ws.cell(1, 12).string('고장증상');
+                        ws.cell(1, 12).string('가격');
                         ws.cell(1, 13).string('수리내역');
 
                         for(var i=0;i<rows.length;i++){
