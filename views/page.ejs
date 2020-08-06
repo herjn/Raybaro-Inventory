@@ -38,17 +38,18 @@
 
 <table border="1">
     <tr>
-        <th>번호</th>
-        <th>수리분류</th>
-        <th>수리요청회사</th>
-        <th>최초고객사 및 담당자</th>
+        <th>No.</th>
+        <th>입고처</th>
+        <th>수리담당자</th>
         <th>모델명</th>
-        <th>장비제조사명</th>
-        <th>제품코드번호</th>
-        <th>제품시리얼번호</th>
+        <th>장비제조사</th>
+        <th>반출번호</th>
+        <th>시리얼번호</th>
         <th>입고날짜</th>
         <th>출고날짜</th>
         <th>고객접수증상</th>
+        <th>Enduser</th>
+        <th>수리위치</th>
         <th>가격</th>
     </tr>
     <%
@@ -60,23 +61,24 @@
     %>
     <tr>
         <td id="number"><%=i+1%></td>
-        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.sort%></a></td>
-        <td><%=data.recompany%></td>
-        <td><%=data.writer%></td>
-        <td><%=data.title%></td>
-        <td><%=data.gearcompany%></td>
-        <td><%=data.codenum%></td>
-        <td><%=data.codeserial%></td>
-        <td><%=data.startday%></td>
-        <td><%=data.endday%></td>
-        <td><%=data.clientsym%></td>
-        <td><%=data.repairsym%></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.recompany%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.writer%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.title%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.gearcompany%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codenum%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codeserial%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.startday%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.endday%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.clientsym%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.enduser%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.place%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.price%></a></td>
     </tr>
     <% }
     }
     %>
     <tr>
-        <td id=page colspan="12">
+        <td id=page colspan="14">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>

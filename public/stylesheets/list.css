@@ -148,11 +148,11 @@ th{
 /*    border: 0px;*/
 /*}*/
 .down1{
-    width:90px;
+    width:70px;
     float:left;
     margin-right:2px;
     padding:20px;
-    margin-left:1050px;
+    margin-left:900px;
     font-family: fantasy;
     font-weight: bold;
     color:white;
@@ -193,7 +193,7 @@ th{
 
 }
 .bar2{
-    width:600px;
+    width:500px;
     height:100px;
     float:left;
     padding:30px;

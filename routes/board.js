@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
     port: 3306,          // DB와 연결할 포트번호
     user: 'root',        // 계정이름
     password: '',    // 계정 비밀번호
-    database: 'RAYBARO'    // 데이터베이스 이름g
+    database: 'RAYBARO'    // 데이터베이스 이름
 });
 
 /* GET List Page. */
@@ -20,7 +20,7 @@ router.get('/list',function (req,res,next){
 
 router.get('/list/:page',function(req, res, next) {
     var page = req.params.page;
-    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym from report',function(err,rows){
+    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place from report',function(err,rows){
         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
         res.render('list', { title:'Board List',rows: rows }); // view 디렉토리에 있는 list 파일로 이동합니다.
     });
@@ -39,13 +39,13 @@ router.get('/read/:idx',function (req,res,next) {
     * url에서 gbidx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*/
     var idx = req.params.idx;
     console.log("idx : "+idx);
-    var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
-        if(err) console.log(err);
-        var sort_array = new Array();
-        for(var i = 0; i < ret.length; i++){
-            sort_array[ret[i].idx] = ret[i].name;
-            console.log(ret[i].idx,  ret[i].name);
-        }
+    // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
+    //     if(err) console.log(err);
+    //     var sort_array = new Array();
+    //     for(var i = 0; i < ret.length; i++){
+    //         sort_array[ret[i].idx] = ret[i].name;
+    //         console.log(ret[i].idx,  ret[i].name);
+    //     }
         var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
             if(err) console.log(err);
             var recompany_array = new Array();
@@ -68,12 +68,11 @@ router.get('/read/:idx',function (req,res,next) {
                         console.log(ret4[i].idx,  ret4[i].name);
                     }
 
-                    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report where idx=?',[idx],function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx],function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         // 이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
 
                         null_to_string(rows);
-                        rows[0].sort = sort_array[rows[0].sort];
                         rows[0].recompany = recompany_array[rows[0].recompany];
                         rows[0].title = title_array[rows[0].title];
                         rows[0].gearcompany = gearcompany_array[rows[0].gearcompany];
@@ -96,9 +95,6 @@ router.get('/read/:idx',function (req,res,next) {
                 });
 
             });
-
-        });
-
     });
     /*
     * Node는 JSP에서 JDBC의 sql문 PreparedStatement 처리에서와 같이 sql문을 작성할 때
@@ -115,43 +111,43 @@ router.get('/read/:idx',function (req,res,next) {
 //     res.redirect('/board/page/1');
 // })
 
-router.get('/page/:page',function(req,res,next)
-{
-    var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
-        if(err) console.log(err);
-        var sort_array = new Array();
-        for(var i = 0; i < ret.length; i++){
-            sort_array[ret[i].idx] = ret[i].name;
-            console.log(ret[i].idx,  ret[i].name);
-        }
-        var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
+router.get('/page/:page',function(req,res,next) {
+    // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
+    //     if(err) console.log(err);
+    //     var sort_array = new Array();
+    //     for(var i = 0; i < ret.length; i++){
+    //         sort_array[ret[i].idx] = ret[i].name;
+    //         console.log(ret[i]);
+    //         console.log(ret[i].idx,  ret[i].name);
+    //     }
+        var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret1) {
             if(err) console.log(err);
             var recompany_array = new Array();
-            for(var i = 0; i < ret2.length; i++){
-                recompany_array[ret2[i].idx] = ret2[i].name;
-                console.log(ret2[i].idx,  ret2[i].name);
+            for(var i = 0; i < ret1.length; i++){
+                recompany_array[ret1[i].idx] = ret1[i].name;
+                console.log(ret1[i].idx,  ret1[i].name);
             }
-            var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+            var sort_query = connection.query('select idx, name from title_data', function (err, ret2) {
                 if(err) console.log(err);
                 var title_array = new Array();
-                for(var i = 0; i < ret3.length; i++){
-                    title_array[ret3[i].idx] = ret3[i].name;
-                    console.log(ret3[i].idx,  ret3[i].name);
+                for(var i = 0; i < ret2.length; i++){
+                    title_array[ret2[i].idx] = ret2[i].name;
+                    console.log(ret2[i].idx,  ret2[i].name);
                 }
-                var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
+                var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret3) {
                     if(err) console.log(err);
                     var gearcompany_array = new Array();
-                    for(var i = 0; i < ret4.length; i++){
-                        gearcompany_array[ret4[i].idx] = ret4[i].name;
-                        console.log(ret4[i].idx,  ret4[i].name);
+                    for(var i = 0; i < ret3.length; i++){
+                        gearcompany_array[ret3[i].idx] = ret3[i].name;
+                        console.log(ret3[i].idx,  ret3[i].name);
                     }
 
                     var page = req.params.page;
-                    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report',function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place from report',function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         null_to_string(rows);
                         for(var i = 0; i < rows.length; i++){
-                            rows[i].sort = sort_array[rows[i].sort];
+                            // rows[i].sort = sort_array[rows[i].sort];
                             rows[i].recompany = recompany_array[rows[i].recompany];
                             rows[i].title = title_array[rows[i].title];
                             rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -165,23 +161,20 @@ router.get('/page/:page',function(req,res,next)
             });
 
         });
-
-    });
 });
 
 
 router.get('/write',function (req,res,next) {
-    var query1 = connection.query('select idx, name from sort_data', function (err, sort_data) {
-        if (err) console.log(err);
-        var query2 = connection.query('select idx, name from recompany_data', function (err, recompany_data) {
+    // var query1 = connection.query('select idx, name from sort_data', function (err, sort_data) {
+    //     if (err) console.log(err);
+        var query1= connection.query('select idx, name from recompany_data', function (err, recompany_data) {
             if (err) console.log(err);
-            var query3 = connection.query('select idx, name from title_data', function (err, title_data) {
+            var query2= connection.query('select idx, name from title_data', function (err, title_data) {
                 if (err) console.log(err);
-                var query4 = connection.query('select idx, name from gearcompany_data', function (err, gearcompany_data) {
+                var query3= connection.query('select idx, name from gearcompany_data', function (err, gearcompany_data) {
                     if (err) console.log(err);
                     res.render('write', {
                         title: 'RAYBARO',
-                        sort_data: sort_data,
                         recompany_data: recompany_data,
                         title_data: title_data,
                         gearcompany_data: gearcompany_data
@@ -190,7 +183,6 @@ router.get('/write',function (req,res,next) {
             });
         });
     });
-});
 
 
 var storage = multer.diskStorage({
@@ -217,7 +209,6 @@ router.post('/write', upload.single("photo"), function(req, res) {
      *  */
 
     var body = req.body;
-    var sort=req.body.sort;
     var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
@@ -229,18 +220,22 @@ router.post('/write', upload.single("photo"), function(req, res) {
     var endday=req.body.endday;
     if(endday == "") endday = null;
     var clientsym=req.body.clientsym;
-    var repairsym=req.body.repairsym;
+    var price=req.body.price;
     var comment=req.body.comment;
+    var enduser=req.body.enduser;
+    var memo=req.body.memo;
+    var place=req.body.place;
     var file = req.file;
     var imagepath;
+
     if(file == undefined) imagepath = "upload/original.png";
     else imagepath = file.path;
 
-    console.log(sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath);
+    console.log(recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,imagepath);
     connection.beginTransaction(function(err) {
         if(err) console.log(err);
-        connection.query('insert into report(sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,image) values(?,?,?,?,?,?,?,?,?,?,?,?,?)'
-            ,[sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath]
+        connection.query('insert into report(recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,image) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+            ,[recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,imagepath]
             ,function (err) {
                 if(err) {
                     /* 이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.*/
@@ -273,15 +268,13 @@ router.post('/write', upload.single("photo"), function(req, res) {
 
 router.get('/update/:idx',function(req,res,next) {
     var idx = req.params.idx;
-    var query1 = connection.query('select idx, name from sort_data', function (err, sort_data) {
-        if (err) console.log(err);
-        var query2 = connection.query('select idx, name from recompany_data', function (err, recompany_data) {
+        var query1= connection.query('select idx, name from recompany_data', function (err, recompany_data) {
             if (err) console.log(err);
-            var query3 = connection.query('select idx, name from title_data', function (err, title_data) {
+            var query2= connection.query('select idx, name from title_data', function (err, title_data) {
                 if (err) console.log(err);
-                var query4 = connection.query('select idx, name from gearcompany_data', function (err, gearcompany_data) {
+                var query3= connection.query('select idx, name from gearcompany_data', function (err, gearcompany_data) {
                     if (err) console.log(err);
-                    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report where idx=?',[idx] ,function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx] ,function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         null_to_string(rows);
                         console.log('rows :' +  rows);
@@ -289,7 +282,6 @@ router.get('/update/:idx',function(req,res,next) {
                         res.render('update', {
                             title:'Board List',
                             rows: rows,
-                            sort_data: sort_data,
                             recompany_data: recompany_data,
                             title_data: title_data,
                             gearcompany_data: gearcompany_data});
@@ -298,12 +290,9 @@ router.get('/update/:idx',function(req,res,next) {
             });
         });
     });
-});
 
 router.post('/update/:idx', upload.single("photo"), function(req, res) {
-    var idx = req.params.idx;
     var body = req.body;
-    var sort=req.body.sort;
     var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
@@ -315,15 +304,18 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var endday=req.body.endday;
     if(endday == "") endday = null;
     var clientsym=req.body.clientsym;
-    var repairsym=req.body.repairsym;
+    var price=req.body.price;
     var comment=req.body.comment;
+    var enduser=req.body.enduser;
+    var memo=req.body.memo;
+    var place=req.body.place;
     var file = req.file;
     var imagepath;
 
     if(file == undefined) imagepath = "upload/original.png";
     else imagepath = file.path;
     console.log(imagepath);
-    var query = connection.query('update report set sort=?,recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,repairsym=?,comment=?,image=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath,idx], function (err, rows) {
+    var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 });
@@ -348,13 +340,13 @@ router.post('/search', function(req, res) {
 });
 
 router.get('/search/:search_query/:search/:page', function(req, res) {
-    var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
-        if(err) console.log(err);
-        var sort_array = new Array();
-        for(var i = 0; i < ret.length; i++){
-            sort_array[ret[i].idx] = ret[i].name;
-            console.log(ret[i].idx,  ret[i].name);
-        }
+    // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
+    //     if(err) console.log(err);
+    //     var sort_array = new Array();
+    //     for(var i = 0; i < ret.length; i++){
+    //         sort_array[ret[i].idx] = ret[i].name;
+    //         console.log(ret[i].idx,  ret[i].name);
+    //     }
         var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
             if(err) console.log(err);
             var recompany_array = new Array();
@@ -382,11 +374,11 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                     var page = req.params.page;
                     console.log(search);
                     if(search_query == 1){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where writer=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where writer=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -398,11 +390,11 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         });
                     }
                     if(search_query == 2){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where title=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where title=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -414,11 +406,11 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         });
                     }
                     if(search_query == 3){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where codenum=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where codenum=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -430,11 +422,11 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         });
                     }
                     if(search_query == 4){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where codeserial=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price, from report where codeserial=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -451,7 +443,6 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
 
         });
 
-    });
 
 
     // if(search_query == 2){
@@ -485,13 +476,13 @@ router.post('/date_search', function(req, res) {
 });
 
 router.get('/date_search/:date_search_query/:startday/:endday/:page', function(req, res){
-    var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
-        if(err) console.log(err);
-        var sort_array = new Array();
-        for(var i = 0; i < ret.length; i++){
-            sort_array[ret[i].idx] = ret[i].name;
-            console.log(ret[i].idx,  ret[i].name);
-        }
+    // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
+    //     if(err) console.log(err);
+    //     var sort_array = new Array();
+    //     for(var i = 0; i < ret.length; i++){
+    //         sort_array[ret[i].idx] = ret[i].name;
+    //         console.log(ret[i].idx,  ret[i].name);
+    //     }
         var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
             if(err) console.log(err);
             var recompany_array = new Array();
@@ -521,11 +512,11 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
 
                     var page = req.params.page;
                     if(date_search_query == 1){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(startday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(startday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -537,11 +528,11 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
                         });
                     }
                     if(date_search_query == 2){
-                        var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(endday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(endday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
-                                rows[i].sort = sort_array[rows[i].sort];
+                                // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
                                 rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
@@ -556,9 +547,7 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
             });
 
         });
-
     });
-});
 
 
 router.get('/search_home', function(req, res){
@@ -567,13 +556,13 @@ router.get('/search_home', function(req, res){
 
 
 router.post('/download', function(req, res){
-    var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
-        if(err) console.log(err);
-        var sort_array = new Array();
-        for(var i = 0; i < ret.length; i++){
-            sort_array[ret[i].idx] = ret[i].name;
-            console.log(ret[i].idx,  ret[i].name);
-        }
+    // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
+    //     if(err) console.log(err);
+    //     var sort_array = new Array();
+    //     for(var i = 0; i < ret.length; i++){
+    //         sort_array[ret[i].idx] = ret[i].name;
+    //         console.log(ret[i].idx,  ret[i].name);
+    //     }
         var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
             if(err) console.log(err);
             var recompany_array = new Array();
@@ -596,47 +585,45 @@ router.post('/download', function(req, res){
                         console.log(ret4[i].idx,  ret4[i].name);
                     }
 
-                    var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym,comment,image from report',function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,place,comment,image from report',function(err,rows){
                         null_to_string(rows);
 
                         var xl = require('excel4node'); // npm install excel4node --save 를 통해 설치
-
                         // Create a new instance of a Workbook class
                         var wb = new xl.Workbook();
 
                         // Add Worksheets to the workbook
                         var ws = wb.addWorksheet('Sheet 1');
 
-                        ws.cell(1, 1).string('번호');
-                        ws.cell(1, 2).string('수리분류');
-                        ws.cell(1, 3).string('수리요청회사');
-                        ws.cell(1, 4).string('최초고객사 및 담당자');
-                        ws.cell(1, 5).string('모델명');
-                        ws.cell(1, 6).string('장비제조사명');
-                        ws.cell(1, 7).string('제품코드번호');
-                        ws.cell(1, 8).string('제품시리얼번호');
-                        ws.cell(1, 9).string('입고날짜');
-                        ws.cell(1, 10).string('출고날짜');
-                        ws.cell(1, 11).string('고객접수증상');
-                        ws.cell(1, 12).string('가격');
-                        ws.cell(1, 13).string('수리내역');
-
+                        ws.cell(1, 1).string('No');
+                        ws.cell(1, 2).string('입고처');
+                        ws.cell(1, 3).string('수리담당자');
+                        ws.cell(1, 4).string('모델명');
+                        ws.cell(1, 5).string('장비제조사');
+                        ws.cell(1, 6).string('반출번호');
+                        ws.cell(1, 7).string('시리얼번호');
+                        ws.cell(1, 8).string('입고날');
+                        ws.cell(1, 9).string('출고날');
+                        ws.cell(1, 10).string('고객접수증상');
+                        ws.cell(1, 11).string('가격');
+                        ws.cell(1, 12).string('enduser');
+                        ws.cell(1, 13).string('수리위치');
+                        ws.cell(1, 14).string('수리내역');
                         for(var i=0;i<rows.length;i++){
                             console.log(rows.length);
                             ws.cell(2+i, 1).string(rows[i].idx.toString());
-                            ws.cell(2+i, 2).string(sort_array[rows[i].sort]);
-                            ws.cell(2+i, 3).string(recompany_array[rows[i].recompany]);
-                            ws.cell(2+i, 4).string(rows[i].writer);
-                            ws.cell(2+i, 5).string(title_array[rows[i].title]);
-                            ws.cell(2+i, 6).string(gearcompany_array[rows[i].gearcompany]);
-                            ws.cell(2+i, 7).string(rows[i].codenum);
-                            ws.cell(2+i, 8).string(rows[i].codeserial);
-                            ws.cell(2+i, 9).string(rows[i].startday);
-                            ws.cell(2+i, 10).string(rows[i].endday);
-                            ws.cell(2+i, 11).string(rows[i].clientsym);
-                            ws.cell(2+i, 12).string(rows[i].repairsym);
-                            ws.cell(2+i, 13).string(rows[i].comment);
-
+                            ws.cell(2+i, 2).string(recompany_array[rows[i].recompany]);
+                            ws.cell(2+i, 3).string(rows[i].writer);
+                            ws.cell(2+i, 4).string(title_array[rows[i].title]);
+                            ws.cell(2+i, 5).string(gearcompany_array[rows[i].gearcompany]);
+                            ws.cell(2+i, 6).string(rows[i].codenum);
+                            ws.cell(2+i, 7).string(rows[i].codeserial);
+                            ws.cell(2+i, 8).string(rows[i].startday);
+                            ws.cell(2+i, 9).string(rows[i].endday);
+                            ws.cell(2+i, 10).string(rows[i].clientsym);
+                            ws.cell(2+i, 11).string(rows[i].place);
+                            ws.cell(2+i, 12).string(rows[i].enduser);
+                            ws.cell(2+i, 13).string(rows[i].place); ws.cell(2+i, 14).string(rows[i].comment);
                         }
 
                         var rightNow = new Date();
@@ -650,40 +637,5 @@ router.post('/download', function(req, res){
         });
 
     });
-
-    //
-    // // Create a reusable style
-    // // Set value of cell A1 to 100 as a number type styled with paramaters of style
-    // ws.cell(1, 1)
-    //     .string('text')
-    //     .style(style);
-    // ws.cell(1, 2)
-    //     .number(100)
-    //
-    // // Set value of cell B1 to 200 as a number type styled with paramaters of style
-    // ws.cell(1, 3)
-    //     .date(new Date())
-    //     .style(style);
-    //
-    // // Set value of cell C1 to a formula styled with paramaters of style
-    // ws.cell(1, 4)
-    //     .formula('A1 + B1')
-    //     .style(style);
-    //
-    // // Set value of cell A2 to 'string' styled with paramaters of style
-    // ws.cell(1, 5)
-    //     .string('id')
-    //     .style(style);
-    //
-    // // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    // ws.cell(1, 6)
-    //     .bool(true)
-    //     .style(style)
-    //     .style({font: {size: 14}});
-
-
-
-    // res.redirect('/board/page/1');
-});
 
 module.exports = router;

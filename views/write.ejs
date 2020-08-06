@@ -33,31 +33,25 @@
         </thead>
         <tbody>
         <tr>
-            <th>수리 분류</th>
+            <th>입고처</th>
             <td>
-                <select name='sort' id='sort' style='width:50%;height:100%;'>
-                <% for (var i=0; i < sort_data.length; i++) { %>
-                    <option value=<%= i + 1 %>> <%=sort_data[i].name%> </option>
-                <% } %>
-                </select>
-            </td>
-
-            <th>수리 요청 회사</th>
-            <td>
-                <select name='recompany' id=recompany' style='width:50%;height:100%;'>
+                <select name='recompany' id=recompany' style='width:70%;height:100%;'>
                     <% for (var i=0; i < recompany_data.length; i++) { %>
                         <option value=<%= i + 1 %>> <%=recompany_data[i].name%> </option>
                     <% } %>
                 </select>
             </td>
-            <th>최초 고객사 및 담당자</th>
-            <td><input type="text" name="writer" id="writer" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <th>End User</th>
+            <td><input type="text" name="enduser" id="enduser" style="width:80%;height:50%;font-size:15px;" /></td>
+            <th>수리담당자</th>
+            <td><input type="text" name="writer" id="writer" style="width:80%;height:50%;font-size:15px;" /></td>
+
         </tr>
 
         <tr>
             <th>모델명</th>
             <td>
-                <select name='title' id=title' style='width:50%;height:100%;'>
+                <select name='title' id=title' style='width:70%;height:100%;'>
                     <% for (var i=0; i < title_data.length; i++) { %>
                         <option value=<%= i + 1 %>> <%=title_data[i].name%> </option>
                     <% } %>
@@ -65,19 +59,19 @@
             </td>
             <th>장비 제조사명</th>
             <td>
-                <select name='gearcompany' id=gearcompany' style='width:50%;height:100%;'>
+                <select name='gearcompany' id=gearcompany' style='width:90%;height:70%;'>
                     <% for (var i=0; i < gearcompany_data.length; i++) { %>
                         <option value=<%= i + 1 %>> <%=gearcompany_data[i].name%> </option>
                     <% } %>
                 </select>
             </td>
-            <th>제품 코드 번호</th>
-            <td><input type="text" name="codenum" id="codenum" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <th>반출번호</th>
+            <td><input type="text" name="codenum" id="codenum" style="width:90%;height:60%;font-size:15px;" /></td>
         </tr>
 
         <tr>
-            <th>제품 시리얼 번호</th>
-            <td><input type="text" name="codeserial" id="codeserial" style="width:50%;height:100%;font-size:15px;" required/></td>
+            <th>시리얼 번호</th>
+            <td><input type="text" name="codeserial" id="codeserial" style="width:90%;height:100%;font-size:15px;"/></td>
             <th>입고날짜</th>
             <td><input type="date" id="startday" name="startday"></td>
             <th>출고날짜</th>
@@ -85,17 +79,24 @@
         </tr>
         <tr>
             <th>고객 접수 증상</th>
-            <td><input type="text" name="clientsym" id="clientsym" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <td colspan="3"><input type="text" name="clientsym" id="clientsym" style="width:99%;height:70%;font-size:15px;" /></td>
 
             <th>가격</th>
-            <td><input type="text" name="repairsym" id="repairsym" style="width:50%;height:50%;font-size:15px;" required/></td>
+            <td colspan="2"><input type="text" name="price" id="price" style="width:70%;height:60%;font-size:15px;"/></td>
+        </tr>
+        <tr>
+            <th>수리위치</th>
+            <td><input type="text" name="place" id="place" style="width:99%;height:50%;font-size:15px;"/></td>
+            <th>수리내역</th>
+            <td colspan="6"><input type="text" style="width: 99%;" name="comment" id="comment" /></td>
 
         </tr>
         <tr>
-            <th>수리내역</th>
-            <td colspan="6"><input type="text" style="width: 99%;" name="comment" id="comment" required/></td>
+            <th>메모</th>
+            <td colspan="6"><input type="text" style="width: 99%;" name="memo" id="memo" /></td>
 
         </tr>
+
 
         <tr>
             <th>이미지 등록</th>
