@@ -19,52 +19,53 @@
     <tr>
         <th>입고처</th>
         <td><%=read.recompany%></td>
-        <th>End user</th>
+        <th>Enduser</th>
         <td><%=read.enduser%></td>
         <th>수리담당자</th>
-        <td><%=read.writer%></td>
-
+        <td colspan="2"><%=read.writer%></td>
     </tr>
 
     <tr>
         <th>모델명</th>
         <td><%=read.title%></td>
-        <th>장비제조사명</th>
+        <th>장비제조사</th>
         <td><%=read.gearcompany%></td>
-        <th>수리위치</th>
-        <td><%=read.place%></td>
+        <th>가격</th>
+        <td colspan="2"><%=read.price%></td>
+
     </tr>
     <tr>
         <th>반출 번호</th>
         <td><%=read.codenum%></td>
-        <th>시리얼 번호</th>
-        <td><%=read.codeserial%></td>
-        <th>고객 접수 증상</th>
-        <td><%=read.clientsym%></td>
-    </tr>
-    <tr>
         <th>입고날짜</th>
         <td><%=read.startday%></td>
         <th>출고날짜</th>
         <td><%=read.endday%></td>
-        <th>가격</th>
-        <td><%=read.price%></td>
+
+    </tr>
+    <tr>
+        <th>시리얼 번호</th>
+        <td colspan="2"><%=read.codeserial%></td>
+        <th>수리위치</th>
+        <td colspan="2"><%=read.place%></td>
     </tr>
 
     <tr>
-        <th>이미지</th>
-        <td> <img src=<%= "./../../" + read.image %>  width="70" height="70"> </td>
+        <th>고객 접수 증상</th>
+        <td colspan="2"><%=read.clientsym%></td>
         <th>수리 내역</th>
-        <td colspan="6" height="200" ><%=read.comment%></td>
+        <td colspan="6" height="90" ><%=read.comment%></td>
+
     </tr>
         <th>메모</th>
-        <td colspan="6" height="200" ><%=read.memo%></td>
+        <td colspan="6" height="80" ><%=read.memo%></td>
     <tr>
+        <th>이미지</th>
+        <td colspan="6" height="100"> <img src=<%= "./../../" + read.image %>  width="70" height="70"> </td>
 
     </tr>
 
 </table>
-
     <div class="three">
         <a href="/board/list" id="list"> 목록으로 </a>
 

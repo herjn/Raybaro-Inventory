@@ -1,11 +1,10 @@
 
+
 header{
     text-align:center;
     color:gray;
-    width:85%;
+    width:90%;
     margin-left:140px;
-
-
 }
 span{
     color:#4B5AAE;
@@ -51,6 +50,7 @@ span{
     font-size:40px;
 }
 table {
+    width:870px;
     border-collapse:collapse;
     margin-left:400px;
     margin-top:50px;
@@ -94,39 +94,39 @@ a:link {
 
 }
 #list{
-    width:150px;
-    padding:2px;
+    width:200px;
+    padding:3px;
     font-weight:bold;
     text-align:center;
     font-size:15px;
     color: white;
     background-color:lightslategray;
-    margin-right: 10px;
+    margin-right:40px;
     border-radius:20px;
     border:1px;
 
 
 }
 #delete{
-    width:150px;
-    padding:2px;
+    width:200px;
+    padding:3px;
     text-align:center;
     font-size:15px;
     color: white;
     font-weight:bold;
     background-color:lightslategray;
-    margin-right: 10px;
+    margin-right:40px;
     border-radius:20px;
     border:1px;
 }
 #update{
-    width:150px;
-    padding:2px;
+    width:200px;
+    padding:3px;
     text-align:center;
     font-size:15px;
     color: white;
     background-color:lightslategray;
-    margin-right: 10px;
+    margin-right:40px;
     border-radius:20px;
     font-weight:bold;
     border:1px;

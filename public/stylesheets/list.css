@@ -4,10 +4,8 @@
 header{
     text-align:center;
     color:gray;
-    width:85%;
+    width:90%;
     margin-left:140px;
-
-
 }
 span{
     color:#4B5AAE;
@@ -36,28 +34,7 @@ ul {
 h5{
     font-size:15px;
 }
-/*nav {*/
-/*    display: flex; justify-content: center; align-items: center;background-color:lightsteelblue;*/
-/*}*/
-/*!*padding: .25em; height: 55px;*!*/
-/*nav ul {*/
-/*    flex: 1;*/
-/*    display: flex;*/
-/*    justify-content: flex-end;*/
-/*    align-items: center;*/
-/*    margin: 0;*/
-/*}*/
-/*nav ul li {*/
-/*    padding: 0;*/
-/*    margin: 0;*/
-/*}*/
-/*nav ul li a {*/
-/*    padding: 1em;*/
-/*    font-size: 0.85em;*/
-/*    display: flex;*/
-/*    align-items: flex-end;*/
-/*    color:white;*/
-/*}*/
+
 nav{
     display:block;
     display:inline;
@@ -134,6 +111,7 @@ th{
 .searchbar{
     margin-left:170px;
     padding-left:200px;
+    padding-top:100px;
 
 }
 
@@ -148,11 +126,11 @@ th{
 /*    border: 0px;*/
 /*}*/
 .down1{
-    width:70px;
+    width:80px;
     float:left;
     margin-right:2px;
     padding:20px;
-    margin-left:900px;
+    margin-left:1000px;
     font-family: fantasy;
     font-weight: bold;
     color:white;

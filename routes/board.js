@@ -38,6 +38,7 @@ router.get('/read/:idx',function (req,res,next) {
     /* GET 방식의 연결이므로 read 페이지 조회에 필요한 idx 값이 url 주소에 포함되어 전송됩니다.
     * url에서 gbidx 값을 가져오기 위해 request 객체의 params 객체를 통해 idx값을 가지고 옵니다.*/
     var idx = req.params.idx;
+
     console.log("idx : "+idx);
     // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
     //     if(err) console.log(err);
@@ -46,26 +47,26 @@ router.get('/read/:idx',function (req,res,next) {
     //         sort_array[ret[i].idx] = ret[i].name;
     //         console.log(ret[i].idx,  ret[i].name);
     //     }
-        var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
+        var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret1) {
             if(err) console.log(err);
             var recompany_array = new Array();
-            for(var i = 0; i < ret2.length; i++){
-                recompany_array[ret2[i].idx] = ret2[i].name;
-                console.log(ret2[i].idx,  ret2[i].name);
+            for(var i = 0; i < ret1.length; i++){
+                recompany_array[ret1[i].idx] = ret1[i].name;
+                console.log(ret1[i].idx,  ret1[i].name);
             }
-            var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+            var sort_query = connection.query('select idx, name from title_data', function (err, ret2) {
                 if(err) console.log(err);
                 var title_array = new Array();
-                for(var i = 0; i < ret3.length; i++){
-                    title_array[ret3[i].idx] = ret3[i].name;
-                    console.log(ret3[i].idx,  ret3[i].name);
+                for(var i = 0; i < ret2.length; i++){
+                    title_array[ret2[i].idx] = ret2[i].name;
+                    console.log(ret2[i].idx,  ret2[i].name);
                 }
-                var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
+                var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret3) {
                     if(err) console.log(err);
                     var gearcompany_array = new Array();
-                    for(var i = 0; i < ret4.length; i++){
-                        gearcompany_array[ret4[i].idx] = ret4[i].name;
-                        console.log(ret4[i].idx,  ret4[i].name);
+                    for(var i = 0; i < ret3.length; i++){
+                        gearcompany_array[ret3[i].idx] = ret3[i].name;
+                        console.log(ret3[i].idx,  ret3[i].name);
                     }
 
                     var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx],function(err,rows){
@@ -106,10 +107,7 @@ router.get('/read/:idx',function (req,res,next) {
     /**/
 });
 
-//
-// router.get('/page',function (req,res,next) {
-//     res.redirect('/board/page/1');
-// })
+
 
 router.get('/page/:page',function(req,res,next) {
     // var sort_query = connection.query('select idx, name from sort_data', function (err, ret) {
@@ -293,6 +291,7 @@ router.get('/update/:idx',function(req,res,next) {
 
 router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var body = req.body;
+    var idx= req.body.idx;
     var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
@@ -315,7 +314,7 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     if(file == undefined) imagepath = "upload/original.png";
     else imagepath = file.path;
     console.log(imagepath);
-    var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [sort,recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,repairsym,comment,imagepath,idx], function (err, rows) {
+    var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,imagepath,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 });
@@ -442,20 +441,6 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
             });
 
         });
-
-
-
-    // if(search_query == 2){
-    //     var query = connection.query('select idx,sort,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,repairsym from report where startday=?', [search], function(err,rows){
-    //         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-    //         null_to_string(rows);
-    //         console.log('rows :' +  rows);
-    //         // console.log(ffff);
-    //         res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"수리날짜"});
-    //         console.log(rows.length-1);
-    //     });
-    // }
-    // // if(search_query == 3){
 
 });
 
@@ -609,6 +594,7 @@ router.post('/download', function(req, res){
                         ws.cell(1, 12).string('enduser');
                         ws.cell(1, 13).string('수리위치');
                         ws.cell(1, 14).string('수리내역');
+                        ws.cell(1, 15).string('사진')
                         for(var i=0;i<rows.length;i++){
                             console.log(rows.length);
                             ws.cell(2+i, 1).string(rows[i].idx.toString());
@@ -623,7 +609,10 @@ router.post('/download', function(req, res){
                             ws.cell(2+i, 10).string(rows[i].clientsym);
                             ws.cell(2+i, 11).string(rows[i].place);
                             ws.cell(2+i, 12).string(rows[i].enduser);
-                            ws.cell(2+i, 13).string(rows[i].place); ws.cell(2+i, 14).string(rows[i].comment);
+                            ws.cell(2+i, 13).string(rows[i].place);
+                            ws.cell(2+i, 14).string(rows[i].comment);
+                            ws.cell(2+i, 15).string(rows[i].image);
+
                         }
 
                         var rightNow = new Date();
