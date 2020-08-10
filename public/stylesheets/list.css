@@ -12,11 +12,16 @@ span{
     font-size:40px;
 }
 .menu{
-    margin-top:38px;
+    margin-top:30px;
 }
 #menubar{
     color:white;
     font-size:15px;
+    font-weight:bold;
+}
+#mainmenu{
+    color:lightgray;
+    font-size:20px;
     font-weight:bold;
 }
 a{
@@ -31,8 +36,37 @@ ul {
     font-size:35px;
 
 }
+h4{
+    color:dimgray;
+    font-family: fantasy;
+    font-weight: bold;
+    text-align:center;
+    font-size:20px;
+    margin-top:45px;
+    padding:10px;
+    margin-left:140px;
+    width:1400px;
+    height:25px;
+    border-bottom: thick solid #4B5AAE;
+}
 h5{
+    color:#4B5AAE;
+    font-family: fantasy;
+    font-weight: bold;
+    text-align:center;
+    font-size:18px;
+    margin-top:49px;
+    padding:10px;
+    margin-left:130px;
+    width:140px;
+    height:25px;
+    border-right: thick solid #4B5AAE;
+    border-top: thick solid #4B5AAE;
+    border-bottom: thick solid #4B5AAE;
+}
+.mainmenu{
     font-size:15px;
+    color:white;
 }
 
 nav{
@@ -40,7 +74,7 @@ nav{
     display:inline;
     width:100px;
     margin: 27px;
-    height:370px;
+    height:350px;
     float:left;
     padding:8px;
     margin-left:28px;
@@ -55,12 +89,10 @@ nav ul{
     padding-left:20px;
 }
 
-
 a:link {
     text-decoration: none;
     color:white;
     text-align:center;
-
 }
 
 
@@ -126,19 +158,20 @@ th{
 /*    background: white;*/
 /*    border: 0px;*/
 /*}*/
+
 .down1{
-    width:80px;
+    width:100px;
     float:left;
     margin-right:2px;
     padding:20px;
-    margin-left:1000px;
+    margin-left:1010px;
     font-family: fantasy;
     font-weight: bold;
     color:white;
     border: 0px;
 }
 .down2{
-    width:90px;
+    width:110px;
     float:left;
     padding:18px;
 
@@ -148,6 +181,7 @@ th{
     font-family: fantasy;
     font-size: 15px;
     font-weight: bold;
+    margin-right:30px;
     background: white;
     border: 0px;
 }
@@ -158,9 +192,7 @@ th{
     font-weight: bold;
     background: white;
     border: 0px;
-    padding-right:10px;
-
-
+    padding-left:30px;
 }
 
 .bar1{

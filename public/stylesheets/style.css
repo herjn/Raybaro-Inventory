@@ -37,6 +37,12 @@ ul {
   font-size:35px;
 
 }
+
+#mainmenu{
+  color:lightgray;
+  font-size:20px;
+  font-weight:bold;
+}
 nav{
   display:block;
   display:inline;
@@ -45,7 +51,7 @@ nav{
   height:380px;
   float:left;
   padding:10px;
-  margin-left:200px;
+  margin-left:100px;
   line-height:70px;
   background:#4B5AAE;
 }

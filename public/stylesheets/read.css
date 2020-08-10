@@ -1,5 +1,4 @@
 
-
 header{
     text-align:center;
     color:gray;
@@ -28,13 +27,19 @@ nav{
     display:block;
     display:inline;
     width:100px;
-    margin: 20px;
+    margin:20px;
     height:380px;
     float:left;
     padding:10px;
     margin-left:200px;
     line-height:70px;
     background:#4B5AAE;
+}
+
+#mainmenu{
+    color:lightgray;
+    font-size:20px;
+    font-weight:bold;
 }
 nav ul a {
     text-align: center;

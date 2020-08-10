@@ -11,21 +11,28 @@
 
 <nav>
     <ul class="menu">
-        <li><a href="/board/page/1" id="menubar">홈으로</a></li>
+        <li id="mainmenu">Menu</li>
+        <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
         <li><a href="/board/search_home" id="menubar">검색하기</a></li>
+        <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
     </ul>
 </nav>
 
+
+
 <p>
-<h5> 수리완료 </h5>
+<h5> 수리진행</h5>
 </p>
 
 
 <p>
+<div class="down1">
     <a href="/board/page/1" id="mm"> 메인으로 </a>
+</div>
+<div class="down2">
     <a href="/board/write" id="enter"> 자료 입력 </a>
-</p>
+</div>
 
 <table border="1">
     <tr>
@@ -52,21 +59,19 @@
     }else{
         var data = rows[i]
     %>
-    <tr>
-        <td id="number"><%=i+1%></td>
-        <td><%=data.recompany%></td>
-        <td><%=data.writer%></td>
-        <td><%=data.title%></td>
-        <td><%=data.gearcompany%></td>
-        <td><%=data.codenum%></td>
-        <td><%=data.codeserial%></td>
-        <td><%=data.startday%></td>
-        <td><%=data.endday%></td>
-        <td><%=data.clientsym%></td>
-        <td><%=data.enduser%></td>
-        <td><%=data.place%></td>
-        <td><%=data.price%></td>
-    </tr>
+    <td id="number"><%=i+1%></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.recompany%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.writer%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.title%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.gearcompany%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codenum%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codeserial%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.startday%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.endday%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.clientsym%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.enduser%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.place%></a></td>
+    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.price%></a></td>
     <% }
     }
     %>

@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a40736c-fc80-4e94-ad77-8e2c897015f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/ring.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/list.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/list.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/read.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/read.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/board.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/board.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/page.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/page.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/read.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/read.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/rfinish.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/rfinish.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ring.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/ring.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/search.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/search.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/search_home.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/search_home.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/update.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/update.ejs" afterDir="false" />
@@ -136,7 +135,7 @@
       <workItem from="1596722354164" duration="6227000" />
       <workItem from="1596790097596" duration="5538000" />
       <workItem from="1596956981950" duration="5645000" />
-      <workItem from="1597044624087" duration="7711000" />
+      <workItem from="1597044624087" duration="11687000" />
     </task>
     <servers />
   </component>

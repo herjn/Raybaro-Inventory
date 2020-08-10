@@ -13,8 +13,8 @@
 
 <nav>
     <ul class="menu">
+        <li id="mainmenu">Menu</li>
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
-        <li><a href="/board/write" id="menubar">자료입력</a></li>
         <li><a href="/board/search_home" id="menubar">검색하기</a></li>
         <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
         <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
@@ -76,13 +76,13 @@
             <th>시리얼 번호</th>
             <td><input autocomplete="off" type="text" name="codeserial" id="codeserial" style="width:90%;height:100%;font-size:15px;"required/></td>
             <th>입고날짜</th>
-            <td><input type="date" id="startday" name="startday"></td>
+            <td><input type="date" id="startday" name="startday" required></td>
             <th>출고날짜</th>
             <td><input type="date" id="endday" name="endday"></td>
         </tr>
         <tr>
-            <th>고객 접수 증상</th>
-            <td colspan="3"><input autocomplete="off" type="text" name="clientsym" id="clientsym" style="width:99%;height:70%;font-size:15px;" /></td>
+            <th>고객접수증상</th>
+            <td colspan="3"><input autocomplete="off" type="text" name="clientsym" id="clientsym" style="width:90%;height:70%;font-size:15px;" /></td>
 
             <th>가격</th>
             <td colspan="2"><input autocomplete="off" type="number" min="0" name="price" id="price" style="width:70%;height:60%;font-size:15px;"required/></td>

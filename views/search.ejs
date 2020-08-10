@@ -8,25 +8,29 @@
 
 <body>
 <header><h1> <span>Raybaro</span> Database System </h1></header>
-
 <nav>
     <ul class="menu">
+        <li id="mainmenu">Menu</li>
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
-        <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
+        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
         <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
     </ul>
-
 </nav>
+
 <p>
 <h5> <%= search_query %>  <%= search %>  검색결과 </h5>
 </p>
-
-
 <p>
+<div class="down1">
     <a href="/board/page/1" id="mm"> 메인으로 </a>
+</div>
+<div class="down2">
     <a href="/board/write" id="enter"> 자료 입력 </a>
-</p>
+</div>
+
+
+
 
 <table border="1">
     <tr>
