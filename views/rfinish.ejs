@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/stylesheets/list.css" type="text/css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<header><h1> <span>Raybaro</span> Database System </h1></header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="/board/page/1" id="menubar">홈으로</a></li>
+        <li><a href="/board/write" id="menubar">자료입력</a></li>
+        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
+    </ul>
+</nav>
+
+<p>
+<h5> 수리완료 </h5>
+</p>
+
+
+<p>
+    <a href="/board/page/1" id="mm"> 메인으로 </a>
+    <a href="/board/write" id="enter"> 자료 입력 </a>
+</p>
+
+<table border="1">
+    <tr>
+        <th>No.</th>
+        <th>입고처</th>
+        <th>수리담당자</th>
+        <th>모델명</th>
+        <th>장비제조사</th>
+        <th>반출번호</th>
+        <th>시리얼번호</th>
+        <th>입고날짜</th>
+        <th>출고날짜</th>
+        <th>고객접수증상</th>
+        <th>Enduser</th>
+        <th>수리위치</th>
+        <th>가격</th>
+    </tr>
+    <%
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@", page, page_num);
+
+    for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
+    if(i > length){
+        i++;
+    }else{
+        var data = rows[i]
+    %>
+    <tr>
+        <td id="number"><%=i+1%></td>
+        <td><%=data.recompany%></td>
+        <td><%=data.writer%></td>
+        <td><%=data.title%></td>
+        <td><%=data.gearcompany%></td>
+        <td><%=data.codenum%></td>
+        <td><%=data.codeserial%></td>
+        <td><%=data.startday%></td>
+        <td><%=data.endday%></td>
+        <td><%=data.clientsym%></td>
+        <td><%=data.enduser%></td>
+        <td><%=data.place%></td>
+        <td><%=data.price%></td>
+    </tr>
+    <% }
+    }
+    %>
+    <tr>
+        <td colspan="20">
+            <%
+            for(var j = 0; j < rows.length / page_num; j++){
+            %>
+                [<a href="/board/page/<%= j + 1 %>"><%= j + 1 %></a>]
+            <%
+            }
+            %>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
+
