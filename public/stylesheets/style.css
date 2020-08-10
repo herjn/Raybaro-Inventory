@@ -14,9 +14,7 @@ span{
   font-size:15px;
   font-weight:bold;
 }
-.menu{
-  margin-top:70px;
-}
+
 a{
   color:black;
 }
@@ -24,6 +22,16 @@ a{
 ul {
   list-style: none;
 }
+
+#menubar{
+  color:white;
+  text-align: center;
+  font-weight:bold;
+}
+.menu{
+  margin-top:22px;
+}
+
 .id{
   color:darkgray;
   font-size:35px;
@@ -31,13 +39,14 @@ ul {
 }
 nav{
   display:block;
-  width:90px;
-  height:400px;
+  display:inline;
+  width:100px;
+  margin: 20px;
+  height:380px;
   float:left;
-  padding:20px;
-  margin: 27px;
-  margin-left:150px;
-  line-height:80px;
+  padding:10px;
+  margin-left:200px;
+  line-height:70px;
   background:#4B5AAE;
 }
 nav ul a {

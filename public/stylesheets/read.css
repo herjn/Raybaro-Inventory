@@ -16,7 +16,7 @@ span{
     font-weight:bold;
 }
 .menu{
-    margin-top:100px;
+    margin-top:22px;
 }
 
 .id{
@@ -28,12 +28,12 @@ nav{
     display:block;
     display:inline;
     width:100px;
-    margin: 27px;
-    height:500px;
+    margin: 20px;
+    height:380px;
     float:left;
     padding:10px;
-    margin-left:230px;
-    line-height:80px;
+    margin-left:200px;
+    line-height:70px;
     background:#4B5AAE;
 }
 nav ul a {

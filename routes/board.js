@@ -608,11 +608,54 @@ router.get('/rfinish/:page', function(req, res){
                 });
             });
         });
+    });
+    // res.render('rfinish', {title:'rfinish'});
+});
+router.get('/ring/:page', function(req, res){
+    var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
+        if(err) console.log(err);
+        var recompany_array = new Array();
+        for(var i = 0; i < ret2.length; i++){
+            recompany_array[ret2[i].idx] = ret2[i].name;
+            console.log(ret2[i].idx,  ret2[i].name);
+        }
+        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+            if(err) console.log(err);
+            var title_array = new Array();
+            for(var i = 0; i < ret3.length; i++){
+                title_array[ret3[i].idx] = ret3[i].name;
+                console.log(ret3[i].idx,  ret3[i].name);
+            }
+            var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
+                if(err) console.log(err);
+                var gearcompany_array = new Array();
+                for(var i = 0; i < ret4.length; i++){
+                    gearcompany_array[ret4[i].idx] = ret4[i].name;
+                    console.log(ret4[i].idx,  ret4[i].name);
+                }
+                var page = req.params.page;
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where endday is NULL', function(err,rows){
+                    if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+                    null_to_string(rows);
+                    for(var i = 0; i < rows.length; i++){
+                        // rows[i].sort = sort_array[rows[i].sort];
+                        rows[i].recompany = recompany_array[rows[i].recompany];
+                        rows[i].title = title_array[rows[i].title];
+                        rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+
+                    }
+                    console.log('rows :' +  rows);
+                    // console.log(ffff);
+                    res.render('ring', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true});
+                    console.log(rows.length-1);
+                });
+            });
+        });
 
     });
 
-    // res.render('rfinish', {title:'rfinish'});
 });
+
 
 
 router.post('/download', function(req, res){

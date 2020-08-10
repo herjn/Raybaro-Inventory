@@ -12,7 +12,7 @@ span{
     font-size:40px;
 }
 .menu{
-    margin-top:30px;
+    margin-top:38px;
 }
 #menubar{
     color:white;
@@ -40,10 +40,10 @@ nav{
     display:inline;
     width:100px;
     margin: 27px;
-    height:200px;
+    height:370px;
     float:left;
-    padding:10px;
-    margin-left:30px;
+    padding:8px;
+    margin-left:28px;
     line-height:50px;
     background:#4B5AAE;
 }

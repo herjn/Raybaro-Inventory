@@ -11,15 +11,14 @@
 
 <nav>
     <ul class="menu">
-        <li><a href="/board/page/1" id="menubar">메인화면</a></li>
+        <li><a href="/board/page/1" id="menubar">홈으로</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
-        <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
-        <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
+        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
     </ul>
-
 </nav>
+
 <p>
-<h5> <%= search_query %>  <%= search %>  검색결과 </h5>
+<h5> 수리완료 </h5>
 </p>
 
 
@@ -45,6 +44,8 @@
         <th>가격</th>
     </tr>
     <%
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@", page, page_num);
+
     for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
     if(i > length){
         i++;
