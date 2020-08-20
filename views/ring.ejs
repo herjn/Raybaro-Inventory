@@ -15,14 +15,13 @@
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
         <li><a href="/board/search_home" id="menubar">검색하기</a></li>
-        <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
+        <li><a href="/board/rfinish/1" id="menubar">수리완료<a></li>
     </ul>
+
 </nav>
 
-
-
 <p>
-<h5> 수리진행</h5>
+<h5>수리진행</h5>
 </p>
 
 
@@ -33,6 +32,8 @@
 <div class="down2">
     <a href="/board/write" id="enter"> 자료 입력 </a>
 </div>
+
+</p>
 
 <table border="1">
     <tr>
@@ -59,19 +60,21 @@
     }else{
         var data = rows[i]
     %>
-    <td id="number"><%=i+1%></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.recompany%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.writer%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.title%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.gearcompany%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codenum%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codeserial%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.startday%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.endday%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.clientsym%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.enduser%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.place%></a></td>
-    <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.price%></a></td>
+    <tr>
+        <td id="number"><%=i+1%></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.recompany%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.writer%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.title%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.gearcompany%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codenum%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.codeserial%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.startday%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.endday%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.clientsym%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.enduser%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.place%></a></td>
+        <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.price%></a></td>
+    </tr>
     <% }
     }
     %>

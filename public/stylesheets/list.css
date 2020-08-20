@@ -105,6 +105,7 @@ table {
     border-right:white;
     font-size:11px;
     border-left:white;
+
 }
 th,td{
     padding: 20px;
@@ -112,6 +113,7 @@ th,td{
     border-bottom: 1px solid #444444;
 }
 td {
+    color:black;
     font-size: 13px;
     border-right: white;
     border-left: white;
@@ -241,5 +243,4 @@ th{
     font-weight: bold;
     border: 1px black;
     color:white;
-
 }

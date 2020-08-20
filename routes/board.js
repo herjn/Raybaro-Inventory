@@ -168,6 +168,7 @@ router.get('/page/:page',function(req,res,next) {
 
 
 router.get('/write',function (req,res,next) {
+    console.log("hello")
     // var query1 = connection.query('select idx, name from sort_data', function (err, sort_data) {
     //     if (err) console.log(err);
         var query1= connection.query('select idx, name from recompany_data', function (err, recompany_data) {
@@ -210,8 +211,9 @@ router.post('/write', upload.single("photo"), function(req, res) {
     *POST 방식의 요청을 URL에 데이터가 포함되지 않고 BODY에 포함되어 전송됩니다.
     * 때문에 request 객체를 통해 body에 접근 후 데이터를 가지고 옵니다.
      *  */
-
+    console.log("22222");
     var body = req.body;
+    console.log(body);
     var recompany=req.body.recompany;
     var writer = req.body.writer;
     var title = req.body.title;
