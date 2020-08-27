@@ -74,7 +74,7 @@ router.get('/read/:idx',function (req,res,next) {
                         console.log(ret3[i].idx,  ret3[i].name);
                     }
 
-                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx],function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx],function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         // 이 idx값을 참조하여 DB에서 해당하는 정보를 가지고 옵니다.
                         console.log(rows);
@@ -146,7 +146,7 @@ router.get('/page/:page',function(req,res,next) {
                     }
 
                     var page = req.params.page;
-                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place from report',function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\')as endday,clientsym,price,enduser,memo,place from report',function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         null_to_string(rows);
                         for(var i = 0; i < rows.length; i++){
@@ -279,7 +279,7 @@ router.get('/update/:idx',function(req,res,next) {
                 if (err) console.log(err);
                 var query3= connection.query('select idx, name from gearcompany_data', function (err, gearcompany_data) {
                     if (err) console.log(err);
-                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx] ,function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price,enduser,memo,place,comment,image from report where idx=?',[idx] ,function(err,rows){
                         if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                         null_to_string(rows);
                         console.log('rows :' +  rows);
@@ -309,8 +309,10 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var codenum=req.body.codenum;
     var codeserial=req.body.codeserial;
     var startday=req.body.startday;
+    console.log(startday);
     if(startday == "") startday = null;
     var endday=req.body.endday;
+    console.log(endday);
     if(endday == "") endday = null;
     var clientsym=req.body.clientsym;
     var price=req.body.price;
@@ -327,6 +329,7 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,imagepath,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
+
 });
 
 
@@ -386,7 +389,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         var get_idx = connection.query('select idx from recompany_data where name = ?', [search], function (err, idx) {
                             var real_idx = 0;
                             if(idx.length != 0) real_idx = idx[0].idx;
-                            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where recompany=?', [real_idx], function(err,rows){
+                            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where recompany=?', [real_idx], function(err,rows){
                                 if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                                 null_to_string(rows);
                                 for(var i = 0; i < rows.length; i++){
@@ -409,7 +412,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                             console.log("real", idx)
                             if (idx.length != 0) real_idx = idx[0].idx;
                             console.log("진짜", real_idx)
-                            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where title=?', [real_idx], function (err, rows) {
+                            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where title=?', [real_idx], function (err, rows) {
                                 if (err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                                 null_to_string(rows);
                                 for (var i = 0; i < rows.length; i++) {
@@ -436,7 +439,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         });
                     }
                     if(search_query == 3){
-                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where codenum=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where codenum=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
@@ -452,7 +455,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         });
                     }
                     if(search_query == 4){
-                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price, from report where codeserial=?', [search], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price, from report where codeserial=?', [search], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
@@ -528,7 +531,7 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
 
                     var page = req.params.page;
                     if(date_search_query == 1){
-                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(startday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday from report where DATE(startday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
@@ -544,7 +547,7 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
                         });
                     }
                     if(date_search_query == 2){
-                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday from report where DATE(endday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
+                        var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday from report where DATE(endday) BETWEEN ? AND ?', [startday, endday], function(err,rows){
                             if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                             null_to_string(rows);
                             for(var i = 0; i < rows.length; i++){
@@ -593,7 +596,7 @@ router.get('/rfinish/:page', function(req, res){
                     console.log(ret4[i].idx,  ret4[i].name);
                 }
                 var page = req.params.page;
-                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where endday is not NULL', function(err,rows){
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where endday is not NULL', function(err,rows){
                     if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                     null_to_string(rows);
                     for(var i = 0; i < rows.length; i++){
@@ -636,7 +639,7 @@ router.get('/ring/:page', function(req, res){
                     console.log(ret4[i].idx,  ret4[i].name);
                 }
                 var page = req.params.page;
-                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price from report where endday is NULL', function(err,rows){
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where endday is NULL', function(err,rows){
                     if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                     null_to_string(rows);
                     for(var i = 0; i < rows.length; i++){
@@ -690,7 +693,7 @@ router.post('/download', function(req, res){
                         console.log(ret4[i].idx,  ret4[i].name);
                     }
 
-                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%y-%m-%d\') as startday,DATE_FORMAT(endday, \'%y-%m-%d\') as endday,clientsym,price,enduser,place,comment,image from report',function(err,rows){
+                    var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price,enduser,place,comment,image from report',function(err,rows){
                         null_to_string(rows);
 
                         var xl = require('excel4node'); // npm install excel4node --save 를 통해 설치
