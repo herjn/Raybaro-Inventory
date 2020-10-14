@@ -326,7 +326,7 @@ router.post('/update/:idx', upload.single("photo"), function(req, res) {
     // if(file == undefined) imagepath = "upload/original.png";
     // else imagepath = file.path;
     // console.log(imagepath);
-    var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,idx], function (err, rows) {
+    var query = connection.query('update report set recompany=?,writer=?,title=?,gearcompany=?,codenum=?,codeserial=?,startday=?,endday=?,clientsym=?,price=?,enduser=?,memo=?,place=?,comment=?,image=? where idx=?', [recompany,writer,title,gearcompany,codenum,codeserial,startday,endday,clientsym,price,enduser,memo,place,comment,imagepath,idx], function (err, rows) {
         res.redirect('/board/read/' + idx);
     });
 
