@@ -17,7 +17,6 @@
         <li id="mainmenu">Menu</li>
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
-        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
         <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
         <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
     </ul>
@@ -48,17 +47,11 @@
             <td><input autocomplete="off" type="text" name="enduser" id="enduser"  value="<%=read.enduser%>"style="width:80%;height:50%;font-size:15px;" /></td>
             <th>수리담당자</th>
             <td><input autocomplete="off" type="text" name="writer" id="writer" value="<%=read.writer%>" style="width:80%;height:50%;font-size:15px;" /></td>
-
         </tr>
-
         <tr>
             <th>모델명</th>
             <td>
-                <select name='title' id=title' style='width:80%;height:100%;'>
-                    <% for (var i=0; i < title_data.length; i++) { %>
-                        <option value=<%= i + 1 %> <%= read.title == i+1 ? 'selected' : ''%> > <%=title_data[i].name%> </option>
-                    <% } %>
-                </select>
+                <input type="text" name="title" id="title" value="<%=read.title%>" style="width:50%;height:100%;"/>
             </td>
             <th>장비 제조사명</th>
             <td>
@@ -71,7 +64,6 @@
             <th>반출번호</th>
             <td><input autocomplete="off" type="text" name="codenum" value="<%=read.codenum%>" style="width:80%;height:50%;font-size:15px;"/></td>
         </tr>
-
         <tr>
             <th>시리얼 번호</th>
             <td><input autocomplete="off" type="text" name="codeserial" value="<%=read.codeserial%>" style="width:80%;height:100%;font-size:15px;"/></td>
@@ -80,8 +72,6 @@
             <th>출고날짜</th>
             <td><input type="date" id="endday" name="endday" value="<%=read.endday%>"/></td>
         </tr>
-
-
         <tr>
             <th>고객접수증상</th>
             <td colspan="3"><input type="text" name="clientsym" id="clientsym" style="width:90%;height:50%;font-size:15px;" value="<%=read.clientsym%>"/></td>
@@ -89,32 +79,25 @@
             <td colspan="2"><input type="text" name="price" id="price" style="width:70%;height:50%;font-size:15px;" value="<%=read.price%>"/></td>
             </td>
         </tr>
-
         <tr>
             <th>수리위치</th>
             <td><input type="text" name="place" id="place" value="<%=read.place%>"style="width:99%;height:50%;font-size:15px;"/></td>
             <th>수리내역</th>
             <td colspan="6"><input type="text"value="<%=read.comment%>" style="width: 99%;" name="comment" id="comment" /></td>
-
         </tr>
-
         <tr>
             <th>메모</th>
             <td colspan="6"><input type="text" value="<%=read.memo%>"style="width: 99%;" name="memo" id="memo" /></td>
-
         </tr>
         <tr>
             <th>이미지 등록</th>
             <td colspan="6" id="end"><input type="file" name="photo"/></td>
         </tr>
-
         <tr>
             <td colspan="6"><input type="submit" id="submit" value="수정하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>
         </tbody>
-
     </table>
 </form>
-
 </body>
 </html>

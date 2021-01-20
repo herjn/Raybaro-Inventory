@@ -90,7 +90,6 @@ nav ul{
 
 a:link {
     text-decoration: none;
-    color:white;
     text-align:center;
 }
 
@@ -235,11 +234,11 @@ th{
     color:white;
 
 }
-#search2{
-    background:#4B5AAE;
+#search2 {
+    background: #4B5AAE;
     font-family: fantasy;
     font-size: 15px;
     font-weight: bold;
     border: 1px black;
-    color:white;
+    color: white;
 }
