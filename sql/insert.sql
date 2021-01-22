@@ -1,1 +1,0 @@
-INSERT INTO `raybaro`.`report` (`idx`, `title`, `writer`, `administer`, `adcompany1`, `sn1`, `sn2`, `sn3`, `customer`, `tag`) VALUES ('23', '32', '32', '32', '3', '1', '12', '2', '3', '3');
