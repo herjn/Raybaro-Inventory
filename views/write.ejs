@@ -15,7 +15,6 @@
     <ul class="menu">
         <li id="mainmenu">Menu</li>
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
-        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
         <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
         <li><a href="/board/rfinish/1" id="menubar">수리완료</a></li>
     </ul>
@@ -27,7 +26,7 @@
 
 <form method="post" action="/board/write" onsubmit="onWriteSubmit()" enctype="multipart/form-data">
     <table>
-<!--        <caption align="right">Raybaro Repair List</caption>-->
+        <!--        <caption align="right">Raybaro Repair List</caption>-->
         <thead>
         <tr>
             <td colspan="6" id="main">Repair List</td>
@@ -48,19 +47,12 @@
             <td><input autocomplete="off" type="text" name="enduser" id="enduser" style="width:80%;height:50%;font-size:15px;"/></td>
             <th>수리담당자</th>
             <td><input autocomplete="off" type="text" name="writer" id="writer" style="width:80%;height:50%;font-size:15px;" required/></td>
-
         </tr>
-
         <tr>
             <th>모델명</th>
-            <td>
-                <select name='title' id=title' style='width:70%;height:100%;'required>
-                    <% for (var i=0; i < title_data.length; i++) { %>
-                        <option value=<%= i + 1 %>> <%=title_data[i].name%> </option>
-                    <% } %>
-                </select>
-            </td>
-            <th>장비 제조사명</th>
+            <td><input type="text" name="title" id="title" style="width:80%;height:70%;font-size:15px;"/></td>
+
+            <th>장비제조사</th>
             <td>
                 <select name='gearcompany' id=gearcompany' style='width:90%;height:70%;'>
                     <% for (var i=0; i < gearcompany_data.length; i++) { %>
@@ -71,7 +63,6 @@
             <th>반출번호</th>
             <td><input autocomplete="off" type="text" name="codenum" id="codenum" style="width:80%;height:60%;font-size:15px;" required/></td>
         </tr>
-
         <tr>
             <th>시리얼 번호</th>
             <td><input autocomplete="off" type="text" name="codeserial" id="codeserial" style="width:90%;height:100%;font-size:15px;"required/></td>
@@ -83,7 +74,6 @@
         <tr>
             <th>고객접수증상</th>
             <td colspan="3"><input autocomplete="off" type="text" name="clientsym" id="clientsym" style="width:90%;height:70%;font-size:15px;" /></td>
-
             <th>가격</th>
             <td colspan="2"><input autocomplete="off" type="number" min="0" name="price" id="price" style="width:70%;height:60%;font-size:15px;"required/></td>
         </tr>
@@ -92,28 +82,20 @@
             <td><input autocomplete="off" type="text" name="place" id="place" style="width:99%;height:50%;font-size:15px;"/></td>
             <th>수리내역</th>
             <td colspan="6"><input autocomplete="off" type="text" style="width: 99%;" name="comment" id="comment" /></td>
-
         </tr>
         <tr>
             <th>메모</th>
             <td colspan="6"><input autocomplete="off" type="text" style="width: 99%;" name="memo" id="memo" /></td>
-
         </tr>
-
-
         <tr>
             <th>이미지 등록</th>
-            <td colspan="6" id="end"><input type="file" name="photo" id="image"/></td>
-
+            <td colspan="6" id="end"><input type="file" name="photo" id="image" style="width:70%;height:50%;"/></td>
         </tr>
-
         <tr>
             <td colspan="6" id="end"><input type="submit" id="submit" value="등록하기" style="text-align:center; display:block; margin: 0 auto;" ></td>
         </tr>
         </tbody>
-
     </table>
 </form>
-
 </body>
 </html>
