@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a40736c-fc80-4e94-ad77-8e2c897015f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/change.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/insert.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/new_input_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/page.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/page.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +141,9 @@
       <workItem from="1602645517033" duration="65000" />
       <workItem from="1611146301143" duration="104000" />
       <workItem from="1611242494028" duration="412000" />
-      <workItem from="1611329549745" duration="363000" />
+      <workItem from="1611329549745" duration="694000" />
+      <workItem from="1611482533565" duration="67000" />
+      <workItem from="1611484065513" duration="30000" />
     </task>
     <servers />
   </component>

@@ -57,9 +57,9 @@
         <th>가격</th>
     </tr>
     <%
-    for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
-    if(i > length){
-        i++;
+    for(var i = length-((page * page_num) - page_num); i > length-(page * page_num); i--) {
+    if(i<0){
+        break;
     }else{
         var data = rows[i]
     %>
