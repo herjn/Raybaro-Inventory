@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a40736c-fc80-4e94-ad77-8e2c897015f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/page.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/page.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
       <recent name="C:\Users\admin\Desktop\git\Web-program-project\views" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.bin\www">
+  <component name="RunManager" selected="JavaScript Debug.write.ejs">
     <configuration name="write.ejs" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/board01/views/write.ejs" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -143,7 +143,11 @@
       <workItem from="1611242494028" duration="412000" />
       <workItem from="1611329549745" duration="694000" />
       <workItem from="1611482533565" duration="67000" />
-      <workItem from="1611484065513" duration="30000" />
+      <workItem from="1611484065513" duration="180000" />
+      <workItem from="1611549557790" duration="132000" />
+      <workItem from="1611568104734" duration="466000" />
+      <workItem from="1611569503311" duration="7000" />
+      <workItem from="1611569528435" duration="54000" />
     </task>
     <servers />
   </component>
