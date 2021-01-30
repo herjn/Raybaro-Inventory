@@ -15,4 +15,4 @@
 ##### Member
 FrontEnd & UI | BackEnd & DB
 ----- | ----- |
-http://github.com/herjn | http://github.com/hellogaon |
+[이정인](http://github.com/herjn)👩🏻‍💻 |[박성우](http://github.com/hellogaon)🧑🏻‍💻 |
