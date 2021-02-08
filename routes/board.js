@@ -363,13 +363,13 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
             recompany_array[ret2[i].idx] = ret2[i].name;
             console.log(ret2[i].idx,  ret2[i].name);
         }
-        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
-            if(err) console.log(err);
-            var title_array = new Array();
-            for(var i = 0; i < ret3.length; i++){
-                title_array[ret3[i].idx] = ret3[i].name;
-                console.log(ret3[i].idx,  ret3[i].name);
-            }
+        // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+        //     if(err) console.log(err);
+        //     var title_array = new Array();
+        //     for(var i = 0; i < ret3.length; i++){
+        //         title_array[ret3[i].idx] = ret3[i].name;
+        //         console.log(ret3[i].idx,  ret3[i].name);
+        //     }
             var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
                 if(err) console.log(err);
                 var gearcompany_array = new Array();
@@ -392,7 +392,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                             for(var i = 0; i < rows.length; i++){
                                 // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
-                                rows[i].title = title_array[rows[i].title];
+                                // rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
                             }
                             console.log('rows :' +  rows);
@@ -415,7 +415,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                             for (var i = 0; i < rows.length; i++) {
                                 // rows[i].sort = sort_array[rows[i].sort];
                                 rows[i].recompany = recompany_array[rows[i].recompany];
-                                rows[i].title = title_array[rows[i].title];
+                                // rows[i].title = title_array[rows[i].title];
                                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
                             }
                             console.log('rows :' + rows);
@@ -458,7 +458,7 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
                         for(var i = 0; i < rows.length; i++){
                             // rows[i].sort = sort_array[rows[i].sort];
                             rows[i].recompany = recompany_array[rows[i].recompany];
-                            rows[i].title = title_array[rows[i].title];
+                            // rows[i].title = title_array[rows[i].title];
                             rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
                         }
                         console.log('rows :' +  rows);
@@ -470,8 +470,6 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
 
             });
         });
-
-    });
 
 });
 
@@ -506,13 +504,13 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
             recompany_array[ret2[i].idx] = ret2[i].name;
             console.log(ret2[i].idx,  ret2[i].name);
         }
-        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
-            if(err) console.log(err);
-            var title_array = new Array();
-            for(var i = 0; i < ret3.length; i++){
-                title_array[ret3[i].idx] = ret3[i].name;
-                console.log(ret3[i].idx,  ret3[i].name);
-            }
+        // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+        //     if(err) console.log(err);
+        //     var title_array = new Array();
+        //     for(var i = 0; i < ret3.length; i++){
+        //         title_array[ret3[i].idx] = ret3[i].name;
+        //         console.log(ret3[i].idx,  ret3[i].name);
+        //     }
             var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
                 if(err) console.log(err);
                 var gearcompany_array = new Array();
@@ -534,7 +532,7 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
                         for(var i = 0; i < rows.length; i++){
                             // rows[i].sort = sort_array[rows[i].sort];
                             rows[i].recompany = recompany_array[rows[i].recompany];
-                            rows[i].title = title_array[rows[i].title];
+                            // rows[i].title = title_array[rows[i].title];
                             rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
                         }
                         console.log('rows :' +  rows);
@@ -550,7 +548,7 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
                         for(var i = 0; i < rows.length; i++){
                             // rows[i].sort = sort_array[rows[i].sort];
                             rows[i].recompany = recompany_array[rows[i].recompany];
-                            rows[i].title = title_array[rows[i].title];
+                            // rows[i].title = title_array[rows[i].title];
                             rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
                         }
                         console.log('rows :' +  rows);
@@ -561,8 +559,6 @@ router.get('/date_search/:date_search_query/:startday/:endday/:page', function(r
                 }
             });
         });
-
-    });
 });
 
 
@@ -578,13 +574,13 @@ router.get('/rfinish/:page', function(req, res){
             recompany_array[ret2[i].idx] = ret2[i].name;
             console.log(ret2[i].idx,  ret2[i].name);
         }
-        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
-            if(err) console.log(err);
-            var title_array = new Array();
-            for(var i = 0; i < ret3.length; i++){
-                title_array[ret3[i].idx] = ret3[i].name;
-                console.log(ret3[i].idx,  ret3[i].name);
-            }
+        // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+        //     if(err) console.log(err);
+        //     var title_array = new Array();
+        //     for(var i = 0; i < ret3.length; i++){
+        //         title_array[ret3[i].idx] = ret3[i].name;
+        //         console.log(ret3[i].idx,  ret3[i].name);
+        //     }
             var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
                 if(err) console.log(err);
                 var gearcompany_array = new Array();
@@ -599,7 +595,7 @@ router.get('/rfinish/:page', function(req, res){
                     for(var i = 0; i < rows.length; i++){
                         // rows[i].sort = sort_array[rows[i].sort];
                         rows[i].recompany = recompany_array[rows[i].recompany];
-                        rows[i].title = title_array[rows[i].title];
+                        // rows[i].title = title_array[rows[i].title];
                         rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
 
                     }
@@ -610,7 +606,6 @@ router.get('/rfinish/:page', function(req, res){
                 });
             });
         });
-    });
     // res.render('rfinish', {title:'rfinish'});
 });
 router.get('/ring/:page', function(req, res){
@@ -621,13 +616,13 @@ router.get('/ring/:page', function(req, res){
             recompany_array[ret2[i].idx] = ret2[i].name;
             console.log(ret2[i].idx,  ret2[i].name);
         }
-        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
-            if(err) console.log(err);
-            var title_array = new Array();
-            for(var i = 0; i < ret3.length; i++){
-                title_array[ret3[i].idx] = ret3[i].name;
-                console.log(ret3[i].idx,  ret3[i].name);
-            }
+        // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+        //     if(err) console.log(err);
+        //     var title_array = new Array();
+        //     for(var i = 0; i < ret3.length; i++){
+        //         title_array[ret3[i].idx] = ret3[i].name;
+        //         console.log(ret3[i].idx,  ret3[i].name);
+        //     }
             var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
                 if(err) console.log(err);
                 var gearcompany_array = new Array();
@@ -642,7 +637,7 @@ router.get('/ring/:page', function(req, res){
                     for(var i = 0; i < rows.length; i++){
                         // rows[i].sort = sort_array[rows[i].sort];
                         rows[i].recompany = recompany_array[rows[i].recompany];
-                        rows[i].title = title_array[rows[i].title];
+                        // rows[i].title = title_array[rows[i].title];
                         rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
 
                     }
@@ -653,9 +648,6 @@ router.get('/ring/:page', function(req, res){
                 });
             });
         });
-
-    });
-
 });
 
 
@@ -675,13 +667,13 @@ router.post('/download', function(req, res){
             recompany_array[ret2[i].idx] = ret2[i].name;
             console.log(ret2[i].idx,  ret2[i].name);
         }
-        var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
-            if(err) console.log(err);
-            var title_array = new Array();
-            for(var i = 0; i < ret3.length; i++){
-                title_array[ret3[i].idx] = ret3[i].name;
-                console.log(ret3[i].idx,  ret3[i].name);
-            }
+        // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
+        //     if(err) console.log(err);
+        //     var title_array = new Array();
+        //     for(var i = 0; i < ret3.length; i++){
+        //         title_array[ret3[i].idx] = ret3[i].name;
+        //         console.log(ret3[i].idx,  ret3[i].name);
+        //     }
             var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
                 if(err) console.log(err);
                 var gearcompany_array = new Array();
@@ -743,7 +735,6 @@ router.post('/download', function(req, res){
 
         });
 
-    });
 
 });
 
