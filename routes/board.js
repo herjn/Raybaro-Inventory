@@ -9,9 +9,10 @@ var connection = mysql.createConnection({
     host: 'localhost', // DB가 위치한 IP주소
     port: 3306,          // DB와 연결할 포트번호
     user: 'root',        // 계정이름
-    password: 'nana1004',    // 계정 비밀번호
+    password: '',    // 계정 비밀번호
     database: 'raybaro'    // 데이터베이스 이름
 });
+
 
 /* GET List Page. */
 router.get('/list',function (req,res,next){
@@ -52,6 +53,7 @@ router.get('/read/:idx',function (req,res,next) {
         var recompany_array = new Array();
         for(var i = 0; i < ret1.length; i++){
             recompany_array[ret1[i].idx] = ret1[i].name;
+            console.log("!!!!!!!!!")
             console.log(ret1[i].idx,  ret1[i].name);
         }
         // var sort_query = connection.query('select idx, name from title_data', function (err, ret2) {
@@ -204,6 +206,7 @@ router.post('/write', upload.single("photo"), function(req, res) {
     *POST 방식의 요청을 URL에 데이터가 포함되지 않고 BODY에 포함되어 전송됩니다.
     * 때문에 request 객체를 통해 body에 접근 후 데이터를 가지고 옵니다.
      *  */
+    console.log("22222");
     var body = req.body;
     console.log(body);
     var recompany=req.body.recompany;
@@ -279,6 +282,7 @@ router.get('/update/:idx',function(req,res,next) {
                     title:'Board List',
                     rows: rows,
                     recompany_data: recompany_data,
+                    // title_data: title_data,
                     gearcompany_data: gearcompany_data});
             });
         });
@@ -348,12 +352,12 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
     //         sort_array[ret[i].idx] = ret[i].name;
     //         console.log(ret[i].idx,  ret[i].name);
     //     }
-    var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret1) {
+    var recompany_query = connection.query('select idx, name from recompany_data', function (err, ret2) {
         if(err) console.log(err);
         var recompany_array = new Array();
-        for(var i = 0; i < ret1.length; i++){
-            recompany_array[ret1[i].idx] = ret1[i].name;
-            console.log(ret1[i].idx,  ret1[i].name);
+        for(var i = 0; i < ret2.length; i++){
+            recompany_array[ret2[i].idx] = ret2[i].name;
+            console.log(ret2[i].idx,  ret2[i].name);
         }
         // var sort_query = connection.query('select idx, name from title_data', function (err, ret3) {
         //     if(err) console.log(err);
@@ -362,86 +366,96 @@ router.get('/search/:search_query/:search/:page', function(req, res) {
         //         title_array[ret3[i].idx] = ret3[i].name;
         //         console.log(ret3[i].idx,  ret3[i].name);
         //     }
-        // var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret2) {
-        //     if(err) console.log(err);
-        //     var gearcompany_array = new Array();
-        //     for(var i = 0; i < ret4.length; i++){
-        //         gearcompany_array[ret4[i].idx] = ret4[i].name;
-        //         console.log(ret4[i].idx,  ret4[i].name);
-        //     }
+        var gearcompany_query = connection.query('select idx, name from gearcompany_data', function (err, ret4) {
+            if(err) console.log(err);
+            var gearcompany_array = new Array();
+            for(var i = 0; i < ret4.length; i++){
+                gearcompany_array[ret4[i].idx] = ret4[i].name;
+                console.log(ret4[i].idx,  ret4[i].name);
+            }
 
-        var search_query = req.params.search_query;
-        var search = req.params.search;
-        var page = req.params.page;
-        console.log(search);
+            var search_query = req.params.search_query;
+            var search = req.params.search;
+            var page = req.params.page;
+            console.log(search);
+            // if(search_query == 1){
+            //     var get_idx = connection.query('select idx from recompany_data', [search], function (err, idx) {
+            //         var real_idx = 0;
+            //         if(idx.length != 0) real_idx = idx[0].idx;
+            //         var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where recompany=?', [real_idx], function(err,rows){
+            //             if(err) console.log(err) // 만약 에러값이 존재한다면 로그에 표시합니다.
+            //             null_to_string(rows);
+            //             for(var i = 0; i < rows.length; i++){
+            //                 // rows[i].sort = sort_array[rows[i].sort];
+            //                 rows[i].recompany = recompany_array[rows[i].recompany];
+            //                 // rows[i].title = title_array[rows[i].title];
+            //                 rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+            //             }
+            //             console.log('rows :' +  rows);
+            //             // console.log(ffff);
+            //             res.render('search', { title:'Board List',rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"입고처"});
+            //             console.log(rows.length-1);
+            //         });
+            //     });
+            //
+            // }
+            if(search_query == 1){
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report', function(err,rows){
+                    // if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+                    null_to_string(rows);
+                    var arr = new Array();
+                    for(var i = 0; i < rows.length; i++){
+                        rows[i].recompany = recompany_array[rows[i].recompany];
+                        rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+                        if(rows[i].title.includes(search)){
+                            arr.unshift(rows[i])
+                        }
 
-        if(search_query == 1){
-            var get_idx = connection.query('select idx from recompany_data where name = ?', [search], function (err, idx) {
-                var real_idx = 0;
-                if(idx.length != 0) real_idx = idx[0].idx;
-                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where recompany=?', [real_idx], function(err,rows){
+                    }
+
+                    res.render('search', { title:'Board List',rows: arr, page:page, length:arr.length-1, page_num:7, pass:true, search:search, search_query:"모델명"});
+                });
+
+            }
+            if(search_query == 2){
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report', function(err,rows){
                     if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
                     null_to_string(rows);
+                    var arr = new Array();
                     for(var i = 0; i < rows.length; i++){
-                        // rows[i].sort = sort_array[rows[i].sort];
                         rows[i].recompany = recompany_array[rows[i].recompany];
-                        // rows[i].title = title_array[rows[i].title];
-                        // rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+                        rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+                        if(rows[i].codenum.includes(search)){
+                            arr.unshift(rows[i])
+                        }
+
                     }
-                    console.log('rows :' +  rows);
-                    res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"입고처"});
+                    res.render('search', { title:'Board List',rows: arr, page:page, length:arr.length-1, page_num:7, pass:true, search:search, search_query:"반출번호"});
                     console.log(rows.length-1);
                 });
-            });
-        }
+            }
+            if(search_query == 3){
+                var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report', function(err,rows){
+                    if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
+                    null_to_string(rows);
+                    var arr = new Array();
+                    for(var i = 0; i < rows.length; i++){
+                        rows[i].recompany = recompany_array[rows[i].recompany];
+                        rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
+                        if(rows[i].codeserial.includes(search)){
+                            arr.unshift(rows[i])
+                        }
 
-        if(search_query == 2){
-            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where title=?', [search], function(err,rows){
-                if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-                null_to_string(rows);
-                for(var i = 0; i < rows.length; i++){
-                    // rows[i].sort = sort_array[rows[i].sort];
-                    rows[i].recompany = recompany_array[rows[i].recompany];
-                    // rows[i].title = title_array[rows[i].title];
-                    // rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
-                }
-                console.log('rows :' +  rows);
-                res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"모델명"});
-                console.log(rows.length-1);
-            });
+                    }
+                    // console.log(ffff);
+                    res.render('search', { title:'Board List',rows: arr, page:page, length:arr.length-1, page_num:7, pass:true, search:search, search_query:"시리얼번호"});
+                    console.log(rows.length-1);
+                });
+            }
 
-        }
-        if(search_query == 3){
-            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where codenum=?', [search], function(err,rows){
-                if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-                null_to_string(rows);
-                for(var i = 0; i < rows.length; i++){
-                    // rows[i].sort = sort_array[rows[i].sort];
-                    rows[i].recompany = recompany_array[rows[i].recompany];
-                    // rows[i].title = title_array[rows[i].title];
-                    // rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
-                }
-                console.log('rows :' +  rows);
-                res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"반출번호"});
-                console.log(rows.length-1);
-            });
-        }
-        if(search_query == 4){
-            var query = connection.query('select idx,recompany,writer,title,gearcompany,codenum,codeserial,DATE_FORMAT(startday, \'%Y-%m-%d\') as startday,DATE_FORMAT(endday, \'%Y-%m-%d\') as endday,clientsym,price from report where codenum=?', [search], function(err,rows){
-                if(err) console.log(err)        // 만약 에러값이 존재한다면 로그에 표시합니다.
-                null_to_string(rows);
-                for(var i = 0; i < rows.length; i++){
-                    // rows[i].sort = sort_array[rows[i].sort];
-                    rows[i].recompany = recompany_array[rows[i].recompany];
-                    // rows[i].title = title_array[rows[i].title];
-                    // rows[i].gearcompany = gearcompany_array[rows[i].gearcompany];
-                }
-                console.log('rows :' +  rows);
-                res.render('search', { title:'Board List',rows: rows,rows: rows, page:page, length:rows.length-1, page_num:7, pass:true, search:search, search_query:"반출번호"});
-                console.log(rows.length-1);
-            });
-        }
+        });
     });
+
 });
 
 
@@ -705,7 +719,6 @@ router.post('/download', function(req, res){
         });
 
     });
-
 
 });
 
