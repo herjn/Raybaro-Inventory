@@ -19,7 +19,7 @@
 </nav>
 
 <p>
-<h4> <%= search_query %>  <%= search %>  검색결과 </h4>
+<h5> <%= search_query_str %> <%=search%>  검색결과 </h5>
 </p>
 <p>
 <div class="down1">
@@ -28,8 +28,6 @@
 <div class="down2">
     <a href="/board/write" id="enter"> 자료 입력 </a>
 </div>
-
-
 
 
 <table border="1">
@@ -49,12 +47,13 @@
         <th>가격</th>
     </tr>
     <%
-    for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
-    if(i > length){
-        i++;
+    for(var i = length-((page * page_num) - page_num); i > length-(page * page_num); i--) {
+    if(i<0){
+        break;
     }else{
         var data = rows[i]
     %>
+
     <tr>
         <td id="number"><%=i+1%></td>
         <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.recompany%></a></td>
@@ -70,15 +69,16 @@
         <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.place%></a></td>
         <td><a href="/board/read/<%=data.idx%>" id="click"><%=data.price%></a></td>
     </tr>
+
     <% }
     }
     %>
     <tr>
         <td colspan="20">
             <%
-            for(var j = 0; j < rows.length / page_num; j++){
+            for(var j = 0; j < rows.length/page_num; j++){
             %>
-                [<a href="/board/page/<%= j + 1 %>"><%= j + 1 %></a>]
+            [<a href="/board/search/<%=search_query%>/<%=search%>/<%=j+1%>"><%=j+1%></a>]
             <%
             }
             %>
@@ -89,4 +89,3 @@
 
 </body>
 </html>
-
