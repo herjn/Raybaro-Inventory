@@ -7,13 +7,14 @@
 </head>
 
 <body>
-<header><h1> <span>Raybaro</span> Database System </h1></header>
+<header><h1><a href="#"><span>Raybaro System</span></a></h1></header>
 
 <nav>
     <ul class="menu">
         <li id="mainmenu">Menu</li>
         <li><a href="/board/page/1" id="menubar">메인화면</a></li>
         <li><a href="/board/write" id="menubar">자료입력</a></li>
+        <li><a href="/board/search_home" id="menubar">검색하기</a></li>
         <li><a href="/board/ring/1" id="menubar">수리진행</a></li>
     </ul>
 
@@ -51,8 +52,6 @@
         <th>가격</th>
     </tr>
     <%
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@", page, page_num);
-
     for(var i = (page * page_num) - page_num; i < (page * page_num); i++) {
     if(i > length){
         i++;
@@ -78,11 +77,11 @@
     }
     %>
     <tr>
-        <td colspan="20">
+        <td colspan="17">
             <%
             for(var j = 0; j < rows.length / page_num; j++){
             %>
-                [<a href="/board/page/<%= j + 1 %>"><%= j + 1 %></a>]
+                [<a href="/board/rfinish/<%= j + 1 %>"><%= j + 1 %></a>]
             <%
             }
             %>
