@@ -2,14 +2,21 @@
 
 Raybaro DB 재고 관리 프로그램 
 
-<br>
+## Start
+```
+git clone https://github.com/zungin/Inventory
+```
 
-## Main
+## Install 
+```
+npm install express 
 
-<img src="https://user-images.githubusercontent.com/43091713/107663466-c048ee80-6cce-11eb-99b8-a52ed3e17b66.png" width="50%" align="center"> 
+npm install excel
 
-<br>
-<br>
+npm install --save multer
+
+npm start
+```
 
 ## Using Technology 
 
@@ -18,7 +25,6 @@ Raybaro DB 재고 관리 프로그램
 - Express
 - Mysql
 
-<br>
 <br>
 
 ## Member 
