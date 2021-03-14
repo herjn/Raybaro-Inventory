@@ -1,14 +1,10 @@
 # Inventory Program 📦 🛠 <br>
 
-Raybaro DB 재고 관리 프로그램 
+수리 재고 관리 프로그램 [데이터 관리]
 
-## Start
+## Start & Install 
 ```
 npm start
-```
-
-## Install
-```
 npm install express 
 npm install excel
 npm install --save multer
@@ -16,12 +12,10 @@ npm install --save multer
 
 ## Technology 
 
-> Javascript <br>
-> Nodejs <br>
-> Express <br>
-> Mysql <br>
+> Mysql (Workbench) <br>
+> Javascript , Ejs <br>
+> Nodejs , Express <br>
 
-<br>
 
 ## Member 
 
