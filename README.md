@@ -1,26 +1,21 @@
-# Inventory Program 📦 🛠 <br>
+# Inventory Program <br>
 
-수리 재고 관리 프로그램 [데이터 관리]
+계측기 데이터 재고 관리 프로그램 📦
 
-## Start & Install 
+## Start
 ```
 npm start
-npm install express 
-npm install excel
-npm install --save multer
 ```
 
 ## Technology 
 
-> Mysql (Workbench) <br>
-> Javascript , Ejs <br>
-> Nodejs , Express <br>
+> Mysql, Javascript , Nodejs , Express <br>
 
 
 ## Member 
 
 FrontEnd 담당 | BackEnd 담당
 :-------------: | :-------------: |
-👩🏻‍💻 [이정인](http://github.com/herjn)  | 🧑🏻‍💻 [박성우](http://github.com/hellogaon)
+[이정인](http://github.com/herjn)  | [박성우](http://github.com/hellogaon)
 
 
